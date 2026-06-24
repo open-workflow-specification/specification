@@ -57,7 +57,6 @@
   + [Authentication](#authentication)
     - [Basic](#basic-authentication)
     - [Bearer](#bearer-authentication)
-    - [Certificate](#certificate-authentication)
     - [Digest](#digest-authentication)
     - [OAUTH2](#oauth2-authentication)
     - [OpenIdConnect](#openidconnect-authentication)
@@ -156,8 +155,8 @@ Configures a workflow's runtime expression evaluation.
 
 | Name | Type | Required | Description|
 |:--|:---:|:---:|:---|
-| language | `string` | `yes` | The language used for writting runtime expressions.<br>*Defaults to `jq`.* |
-| mode | `string` | `yes` | The runtime expression evaluation mode.<br>*Supported values are:*<br>- `strict`: requires all expressions to be enclosed within `${ }` for proper identification and evaluation.<br>- `loose`: evaluates any value provided. If the evaluation fails, it results in a string with the expression as its content.<br>*Defaults to `strict`.*
+| language | `string` | `no` | The language used for writting runtime expressions.<br>*Defaults to `jq`.* |
+| mode | `string` | `no` | The runtime expression evaluation mode.<br>*Supported values are:*<br>- `strict`: requires all expressions to be enclosed within `${ }` for proper identification and evaluation.<br>- `loose`: evaluates any value provided. If the evaluation fails, it results in a string with the expression as its content.<br>*Defaults to `strict`.*
 
 #### Examples
 
@@ -1708,7 +1707,6 @@ Defines the mechanism used to authenticate users and workflows attempting to acc
 | use | `string` | `no` | The name of the top-level authentication definition to use. Cannot be used by authentication definitions defined at top level. |
 | basic | [`basicAuthentication`](#basic-authentication) | `no` | The `basic` authentication scheme to use, if any.<br>Required if no other property has been set, otherwise ignored. |
 | bearer | [`bearerAuthentication`](#bearer-authentication) | `no` | The `bearer` authentication scheme to use, if any.<br>Required if no other property has been set, otherwise ignored. |
-| certificate | [`certificateAuthentication`](#certificate-authentication) | `no` | The `certificate` authentication scheme to use, if any.<br>Required if no other property has been set, otherwise ignored. |
 | digest | [`digestAuthentication`](#digest-authentication) | `no` | The `digest` authentication scheme to use, if any.<br>Required if no other property has been set, otherwise ignored. |
 | oauth2 | [`oauth2`](#oauth2-authentication) | `no` | The `oauth2` authentication scheme to use, if any.<br>Required if no other property has been set, otherwise ignored. |
 | oidc | [`oidc`](#openidconnect-authentication) | `no` | The `oidc` authentication scheme to use, if any.<br>Required if no other property has been set, otherwise ignored. |
@@ -1804,9 +1802,6 @@ do:
             bearer:
               token: ${ .user.token }
 ```
-
-#### Certificate Authentication
-
 
 #### Digest Authentication
 
