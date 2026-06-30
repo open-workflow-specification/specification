@@ -1,12 +1,12 @@
-# Serverless Workflow Project Governance
+# Open Workflow Specification Project Governance
 
 As a CNCF member project, we abide by the [CNCF Code of Conduct](https://github.com/cncf/foundation/blob/master/code-of-conduct.md).
 
-For specific guidance on practical contribution steps for any Serverless Workflow sub-project please
+For specific guidance on practical contribution steps for any Open Workflow Specification sub-project please
 see our [contributing guide](contributing.md).
 
 You can contact the project maintainers at any time by sending an email to the 
-[Serverless Workflow Specification Maintainers](mailto:cncf-serverlessws-maintainers@lists.cncf.io)
+[Open Workflow Specification Maintainers](mailto:cncf-serverlessws-maintainers@lists.cncf.io)
  mailing list.
 
 ## Maintainership
@@ -48,7 +48,7 @@ To transition a maintainer to an emeritus role, the process follows the same vot
 
 ## Subprojects
 
-Serverless Workflow subprojects all culminate in officially supported and
+Open Workflow Specification subprojects all culminate in officially supported and
 maintained releases of the specification.
 All subprojects must adhere to
 [CNCF Code of Conduct](https://github.com/cncf/foundation/blob/master/code-of-conduct.md)
@@ -56,14 +56,14 @@ as well as this governance document.
 
 ### Adding core subprojects
 
-New subprojects can request to be added to the Serverless Workflow GitHub
+New subprojects can request to be added to the Open Workflow Specification GitHub
 organization by submitting a GitHub issue in the specification repository.
 
 The existing maintainers are given fourteen business days to discuss the new
 project, raise objections and cast their vote. Projects must be approved by at
 least 66% of the current maintainers.
 
-If a project is approved, a maintainer will add the project to the Serverless Workflow
+If a project is approved, a maintainer will add the project to the Open Workflow Specification
 GitHub organization, and make an announcement on a public Slack channel.
 
 ## Stepping down policy
@@ -98,7 +98,7 @@ by a pull request removing them.
 
 ## How are decisions made?
 
-Serverless Workflow is an open-source project with an open design philosophy. This means
+Open Workflow Specification is an open-source project with an open design philosophy. This means
 that the repository is the source of truth for EVERY aspect of the project,
 including its philosophy, design, road map, and APIs. *If it's part of the
 project, it's in the repository. If it's in the repository, it's part of the project.*
@@ -113,7 +113,7 @@ Upon agreement, a pull request should be opened. We encourage not opening pull
 requests without a discussion first either in a new [issue](issues) or using
 the [discussion](discussions) tool.
 
-All decisions affecting Serverless Workflow, big and small, follow the same 3 steps:
+All decisions affecting Open Workflow Specification, big and small, follow the same 3 steps:
 
 * Step 1: Open a pull request. Anyone can do this.
 

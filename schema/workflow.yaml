@@ -1,6 +1,6 @@
 $id: https://serverlessworkflow.io/schemas/1.0.3/workflow.yaml
 $schema: https://json-schema.org/draft/2020-12/schema
-description: Serverless Workflow DSL - Workflow Schema.
+description: Open Workflow DSL - Workflow Schema.
 type: object
 required: [ document, do ]
 properties:
@@ -152,6 +152,23 @@ properties:
         $ref: '#/$defs/eventConsumptionStrategy'
         title: ScheduleOn
         description: Specifies the events that trigger the workflow execution.
+  evaluate:
+    type: object
+    title: Evaluate
+    description: Configures the workflow's runtime expression evaluation.
+    unevaluatedProperties: false
+    properties:
+      language:
+        type: string
+        default: jq
+        title: EvaluateLanguage
+        description: The language used for writing runtime expressions. Defaults to 'jq'.
+      mode:
+        type: string
+        enum: [ strict, loose ]
+        default: strict
+        title: EvaluateMode
+        description: The runtime expression evaluation mode. Defaults to 'strict'.
 $defs:
   taskList:
     title: TaskList
@@ -569,7 +586,7 @@ $defs:
                       type: string
                       title: McpClientName
                       description: The name of the client used to connect to the MCP server.
-                    description:
+                    version:
                       type: string
                       title: McpClientVersion
                       description: The version of the client used to connect to the MCP server.

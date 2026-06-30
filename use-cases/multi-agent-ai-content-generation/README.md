@@ -172,4 +172,4 @@ do:
 
 ## Conclusion
 
-This use case demonstrates how multiple AI agents can collaborate efficiently to generate high-quality content. By leveraging the Serverless Workflow DSL, the system ensures that each agent’s output is evaluated and refined in a coordinated manner, leading to superior results. This approach allows for iterative improvements, making it an ideal solution for complex content generation tasks.
+This use case demonstrates how multiple AI agents can collaborate efficiently to generate high-quality content. By leveraging the Open Workflow DSL, the system ensures that each agent’s output is evaluated and refined in a coordinated manner, leading to superior results. This approach allows for iterative improvements, making it an ideal solution for complex content generation tasks.

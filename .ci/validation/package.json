@@ -13,7 +13,7 @@
     "workflow",
     "specification"
   ],
-  "author": "CNCF Serverless Workflow Specification",
+  "author": "Open Workflow Specification",
   "license": "ISC",
   "devDependencies": {
     "@types/jest": "^29.5.12",

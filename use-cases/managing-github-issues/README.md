@@ -4,7 +4,7 @@
 
 ### System
 
-The system is a GitHub-based issue management workflow designed to automate the lifecycle of an issue. It leverages Serverless Workflow (SW) DSL to handle various stages, from assignment and development to review and closure.
+The system is a GitHub-based issue management workflow designed to automate the lifecycle of an issue. It leverages Open Workflow DSL to handle various stages, from assignment and development to review and closure.
 
 ### Actors
 
@@ -259,4 +259,4 @@ do:
 
 ## Conclusion
 
-This use case illustrates the powerful capabilities of Serverless Workflow in automating complex processes such as GitHub issue management. The workflow is flexible, scalable, and easy to maintain, making it an ideal choice for orchestrating tasks in modern development environments. By leveraging Serverless Workflow, teams can ensure efficient and consistent handling of issues, improving productivity and achieving better project outcomes.
+This use case illustrates the powerful capabilities of Open Workflow Specification in automating complex processes such as GitHub issue management. The workflow is flexible, scalable, and easy to maintain, making it an ideal choice for orchestrating tasks in modern development environments. By leveraging Open Workflow Specification, teams can ensure efficient and consistent handling of issues, improving productivity and achieving better project outcomes.

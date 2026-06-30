@@ -1,4 +1,4 @@
-# Contributing to Serverless Workflow
+# Contributing to Open Workflow Specification
 
 This page contains information about reporting issues, how to suggest changes as
 well as the guidelines we follow for how our documents are formatted.
@@ -57,7 +57,7 @@ first comment in the issue to include `Assigned to: @person`
 
 ## Versioning
 
-The versioning strategy for the Serverless Workflow DSL is structured to accommodate different types of changes introduced through pull requests (PRs). 
+The versioning strategy for the Open Workflow DSL is structured to accommodate different types of changes introduced through pull requests (PRs). 
 
 If a PR is labeled with `change: documentation`, indicating modifications related to improving or clarifying documentation, it does not trigger a version change. 
 

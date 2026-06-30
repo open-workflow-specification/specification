@@ -1,4 +1,4 @@
-# Serverless Workflow DSL
+# Open Workflow DSL
 
 ## Table of Contents
 
@@ -39,24 +39,24 @@
 
 ## Abstract
 
-This document proposes the creation of a Domain Specific Language (DSL) called Serverless Workflow, tailored for building platform agnostic workflows. 
+This document proposes the creation of a Domain Specific Language (DSL) for the Open Workflow Specification, designed for building platform agnostic workflows. 
 
-Serverless Workflow aims to simplify the orchestration of complex processes across diverse environments, providing developers with a unified syntax and set of tools for defining and executing serverless workflows.
+Open Workflow Specification aims to simplify the orchestration of complex processes across diverse environments, providing developers with a unified syntax and set of tools for defining and executing workflows.
 
 ## Motivation
 
-Serverless computing has gained popularity for its ability to abstract away infrastructure management tasks, enabling developers to focus on application logic. However, orchestrating serverless workflows across multiple environments often involves dealing with disparate tools and platforms, leading to complexity and inefficiency.
+Modern cloud-native computing has gained popularity for its ability to abstract away infrastructure management tasks, enabling developers to focus on application logic. However, orchestrating workflows across multiple environments often involves dealing with disparate tools and platforms, leading to complexity and inefficiency.
 
-Serverless Workflow addresses this challenge by providing a DSL specifically designed for serverless workflow orchestration. By abstracting away the underlying infrastructure complexities and offering a modular and extensible framework, Serverless Workflow aims to streamline the development, deployment, and management of serverless workflows.
+Open Workflow Specification addresses this challenge by providing a DSL specifically designed for workflow orchestration. By abstracting away the underlying infrastructure complexities and offering a modular and extensible framework, Open Workflow Specification aims to streamline the development, deployment, and management of workflows.
 
 ## Priority of Constituencies
 
-Inspired by the [Priority of Constituencies](https://www.w3.org/TR/2024/NOTE-design-principles-20240718/#priority-of-constituencies) principle from the W3C Design Principles, the Serverless Workflow DSL prioritizes the following constituencies (collectively referred to as "users"):
+Inspired by the [Priority of Constituencies](https://www.w3.org/TR/2024/NOTE-design-principles-20240718/#priority-of-constituencies) principle from the W3C Design Principles, the Open Workflow DSL prioritizes the following constituencies (collectively referred to as "users"):
 
 - Authors: people authoring and reading workflows
 - Operators: people running and operating a runtime implementation of the specification
 - Implementors: people implementing a specification compliant runtime
-- Specifications writers: people working on the specifications of Serverless Workflow
+- Specifications writers: people working on the Open Workflow Specification
 
 If a trade-off needs to be made, always put author's needs above all.
 
@@ -68,7 +68,7 @@ Like all principles, this isn’t absolute. Ease of operations affects the perce
 
 ## Design
 
-The Serverless Workflow DSL is crafted with a design philosophy that prioritizes clarity, expressiveness, and ease of use. Its foundation lies in linguistic fluency, emphasizing readability and comprehension. By adopting a fluent style, the DSL promotes intuitive understanding through natural language constructs. Verbs are employed in the imperative tense to denote actions, enhancing clarity and directness in expressing workflow logic. This imperative approach empowers developers to articulate their intentions succinctly and effectively.
+The Open Workflow DSL is crafted with a design philosophy that prioritizes clarity, expressiveness, and ease of use. Its foundation lies in linguistic fluency, emphasizing readability and comprehension. By adopting a fluent style, the DSL promotes intuitive understanding through natural language constructs. Verbs are employed in the imperative tense to denote actions, enhancing clarity and directness in expressing workflow logic. This imperative approach empowers developers to articulate their intentions succinctly and effectively.
 
 The DSL also embraces the principle of implicit default behaviors, sparing authors from unnecessary repetition and enhancing the conciseness of workflow definitions. For instance, default settings alleviate the burden of explicitly defining every detail, streamlining the workflow design process. Furthermore, the DSL allows both inline declaration of components or the creation of reusable elements, granting flexibility in workflow composition. This flexibility allows developers to seamlessly integrate inline task definitions without imposing rigid structural requirements.
 
@@ -86,7 +86,7 @@ Moreover, the DSL eschews strong-typed enumerations wherever feasible, fostering
 
 ### Workflow
 
-A Serverless Workflow is a sequence of specific [tasks](dsl-reference.md#tasks) that are executed in a defined order. By default, this order follows the declaration sequence within the workflow definition. Workflows are designed to automate processes and orchestrate various serverless functions and services. 
+A workflow defined using the Open Workflow Specification is a sequence of specific [tasks](dsl-reference.md#tasks) that are executed in a defined order. By default, this order follows the declaration sequence within the workflow definition. Workflows are designed to automate processes and orchestrate various functions and services. 
 
 Workflows can be triggered in different ways: upon request, scheduled using CRON expressions, or initiated upon correlation with specific events. 
 
@@ -94,7 +94,7 @@ Additionally, workflows may optionally accept inputs and produce outputs, allowi
 
 #### Status Phases
 
-Both workflows and tasks in the Serverless Workflow DSL can exist in several phases, each indicating the current state of the workflow/task execution. These phases include:
+Both workflows and tasks in the Open Workflow DSL can exist in several phases, each indicating the current state of the workflow/task execution. These phases include:
 
 | Phase |	Description |
 | --- | --- |
@@ -152,7 +152,7 @@ Runtimes are expected to publish these events upon state changes. While using th
 
 #### Components
 
-Serverless Workflow DSL allows for defining reusable components that can be referenced across the workflow. These include:
+Open Workflow DSL allows for defining reusable components that can be referenced across the workflow. These include:
 
 - [Authentications](dsl-reference.md#authentication)
 - [Errors](dsl-reference.md#error)
@@ -165,7 +165,7 @@ Serverless Workflow DSL allows for defining reusable components that can be refe
 
 [Tasks](dsl-reference.md#tasks) are the fundamental computing units of a workflow. They define the different types of actions that a workflow can perform, including the ability to mutate their input and output data. Tasks can also write to and modify the context data, enabling complex and dynamic workflow behaviors.
 
-The Serverless Workflow DSL defines several default [task](dsl-reference.md#tasks) types that runtimes **must** implement:
+The Open Workflow DSL defines several default [task](dsl-reference.md#tasks) types that runtimes **must** implement:
 
 - [Call](dsl-reference.md#call), used to call services and/or functions.
 - [Do](dsl-reference.md#do), used to define one or more subtasks to perform in sequence.
@@ -232,7 +232,7 @@ Once the task has been executed, different things can happen:
 
 ### Data Flow
 
-In Serverless Workflow DSL, data flow management is crucial to ensure that the right data is passed between tasks and to the workflow itself.
+In Open Workflow DSL, data flow management is crucial to ensure that the right data is passed between tasks and to the workflow itself.
 
 Here's how data flows through a workflow based on various transformation stages:
 
@@ -282,7 +282,7 @@ Finally, the overall workflow output can be transformed before it is returned to
 11. **Validate Workflow Output**
 After `output.as` is evaluated, the transformed workflow output is validated against the `output.schema` property to ensure it conforms to the expected structure. The execution only proceeds if the output is valid. Otherwise, it will fault with a [ValidationError (https://serverlessworkflow.io/spec/1.0.0/errors/validation)](dsl-reference.md#error).
 
-By applying transformations at these strategic points, Serverless Workflow DSL ensures that data flows through the workflow in a controlled and efficient manner, maintaining clarity and relevance at each execution stage. This approach helps manage complex workflows and ensures that each task operates with the precise data required, leading to more predictable and reliable workflow outcomes.
+By applying transformations at these strategic points, Open Workflow DSL ensures that data flows through the workflow in a controlled and efficient manner, maintaining clarity and relevance at each execution stage. This approach helps manage complex workflows and ensures that each task operates with the precise data required, leading to more predictable and reliable workflow outcomes.
 
 Visually, this can be represented as follows:
 
@@ -372,7 +372,7 @@ Runtime expressions allow for the incorporation of variables, functions, and ope
 
 One key aspect of runtime expressions is their ability to adapt to runtime data and context. This means that expressions can access and manipulate data generated during the execution of a workflow, enabling dynamic decision-making and behavior based on real-time information.
 
-Runtime expressions in Serverless Workflow can be evaluated using either the default `strict` mode or the `loose` mode. In `strict` mode, all expressions must be properly identified with `${}` syntax. Conversely, in `loose` mode, expressions are evaluated more liberally, allowing for a wider range of input formats. While `strict` mode ensures strict adherence to syntax rules, `loose` mode offers flexibility, allowing evaluation even if the syntax is not perfectly formed.
+Runtime expressions in Open Workflow Specification can be evaluated using either the default `strict` mode or the `loose` mode. In `strict` mode, all expressions must be properly identified with `${}` syntax. Conversely, in `loose` mode, expressions are evaluated more liberally, allowing for a wider range of input formats. While `strict` mode ensures strict adherence to syntax rules, `loose` mode offers flexibility, allowing evaluation even if the syntax is not perfectly formed.
 
 All runtimes **must** support the default runtime expression language, which is [`jq`](https://jqlang.github.io/jq/).
 
@@ -460,13 +460,13 @@ The following table shows which arguments are available for each runtime express
 
 ### Fault Tolerance
 
-Serverless Workflow is designed with resilience in mind, acknowledging that errors are an inevitable part of any system. The DSL provides robust mechanisms to identify, describe, and handle errors effectively, ensuring the workflow can recover gracefully from failures.
+Open Workflow Specification is designed with resilience in mind, acknowledging that errors are an inevitable part of any system. The DSL provides robust mechanisms to identify, describe, and handle errors effectively, ensuring the workflow can recover gracefully from failures.
 
-Overall, the fault tolerance features in Serverless Workflow enhance its robustness and reliability, making it capable of handling a wide range of failure scenarios gracefully and effectively.
+Overall, the fault tolerance features in Open Workflow Specification enhance its robustness and reliability, making it capable of handling a wide range of failure scenarios gracefully and effectively.
 
 #### Errors
 
-Errors in Serverless Workflow are described using the [Problem Details RFC](https://datatracker.ietf.org/doc/html/rfc7807). This specification helps to standardize the way errors are communicated, using the `instance` property as a [JSON Pointer](https://datatracker.ietf.org/doc/html/rfc6901) to identify the specific component of the workflow that has raised the error. By adhering to this standard, authors and runtimes can consistently describe and handle errors.
+Errors in Open Workflow Specification are described using the [Problem Details RFC](https://datatracker.ietf.org/doc/html/rfc7807). This specification helps to standardize the way errors are communicated, using the `instance` property as a [JSON Pointer](https://datatracker.ietf.org/doc/html/rfc6901) to identify the specific component of the workflow that has raised the error. By adhering to this standard, authors and runtimes can consistently describe and handle errors.
 
 *Example error:*
 ```yaml
@@ -477,7 +477,7 @@ detail: The service is currently unavailable. Please try again later.
 instance: /do/getPetById
 ```
 
-The Serverless Workflow specification defines several [standard error types](dsl-reference.md#standard-error-types) to describe commonly known errors, such as timeouts. Using these standard error types ensures that workflows behave consistently across different runtimes, and allows authors to rely on predictable error handling and recovery processes.
+The Open Workflow Specification defines several [standard error types](dsl-reference.md#standard-error-types) to describe commonly known errors, such as timeouts. Using these standard error types ensures that workflows behave consistently across different runtimes, and allows authors to rely on predictable error handling and recovery processes.
 
 See the [DSL reference](dsl-reference.md#error) for more details about errors.
 
@@ -588,7 +588,7 @@ do:
 
 ### Interoperability
 
-Serverless Workflow DSL is designed to seamlessly interact with a variety of services, ensuring robust service interoperability.
+Open Workflow DSL is designed to seamlessly interact with a variety of services, ensuring robust service interoperability.
 
 #### Supported Protocols
 
@@ -608,7 +608,7 @@ For custom interactions, the workflow can define [tasks](dsl-reference.md#run) t
 
 ##### Creating a Custom Function
 
-Serverless Workflow DSL supports the creation and publication of custom functions to extend the DSL capabilities. 
+Open Workflow DSL supports the creation and publication of custom functions to extend the DSL capabilities. 
 
 Custom functions allow you to define specific tasks and interactions that are not covered by the default supported protocols. 
 
@@ -655,9 +655,9 @@ run:
 
 4. Commit and push your function to your repository.
 
-5. Optionally, submit your function to the [Serverless Workflow Catalog](https://github.com/serverlessworkflow/catalog), allowing users to find your function.
+5. Optionally, submit your function to the [Open Workflow Catalog](https://github.com/serverlessworkflow/catalog), allowing users to find your function.
 
-For more information about authoring a new custom function, visit the [Serverless Workflow Catalog](https://github.com/serverlessworkflow/catalog).
+For more information about authoring a new custom function, visit the [Open Workflow Catalog](https://github.com/serverlessworkflow/catalog).
 
 ##### Using a Custom Function
 
@@ -681,17 +681,17 @@ do:
 
 ##### Publishing a Custom Function
 
-Consider submitting your function to the [Serverless Workflow Function Catalog](https://github.com/serverlessworkflow/catalog). 
+Consider submitting your function to the [Open Workflow Function Catalog](https://github.com/serverlessworkflow/catalog). 
 
-This optional step allows users to discover and utilize your function, enhancing its visibility and usability within the Serverless Workflow community. By registering your function, you contribute to a shared repository of resources that can streamline workflow development for others.
+This optional step allows users to discover and utilize your function, enhancing its visibility and usability within the Open Workflow Specification community. By registering your function, you contribute to a shared repository of resources that can streamline workflow development for others.
 
 For detailed instructions on how to contribute your custom function, please refer to the [CONTRIBUTING.md](https://github.com/serverlessworkflow/catalog/blob/main/CONTRIBUTING.md) file.
 
 ### Events
 
-Events play a crucial role in Serverless Workflow by facilitating communication and coordination between different components and services. They enable workflows to react to external stimuli, paving the way for event-driven architectures and real-time processing scenarios. Events are essentially messages that convey information about a specific occurrence or action, allowing workflows to respond dynamically to changes in their environment.
+Events play a crucial role in Open Workflow Specification by facilitating communication and coordination between different components and services. They enable workflows to react to external stimuli, paving the way for event-driven architectures and real-time processing scenarios. Events are essentially messages that convey information about a specific occurrence or action, allowing workflows to respond dynamically to changes in their environment.
 
-Events in Serverless Workflow adhere to the [Cloud Events specification](https://cloudevents.io/), ensuring interoperability and compatibility with event-driven systems. This standardization allows workflows to seamlessly interact with various event sources and consumers across different platforms and environments.
+Events in Open Workflow Specification adhere to the [CloudEvents specification](https://cloudevents.io/), ensuring interoperability and compatibility with event-driven systems. This standardization allows workflows to seamlessly interact with various event sources and consumers across different platforms and environments.
 
 #### Emitting Events
 
@@ -707,13 +707,13 @@ The Listen task provides a mechanism for workflows to await and react to externa
 
 This capability allows workflows to implement event-driven behavior, where they respond dynamically to changes in their environment. For instance, a workflow responsible for monitoring vital signs in a healthcare application might listen for temperature or heart rate measurements. Upon receiving such measurements, the workflow can perform actions like alerting medical staff or updating patient records.
 
-In summary, events in Serverless Workflow serve as the foundation for building event-driven architectures and enable workflows to communicate, coordinate, and react to changes in their environment effectively. They empower workflows to operate in real-time, making them well-suited for scenarios requiring dynamic, responsive behavior.
+In summary, events in Open Workflow serve as the foundation for building event-driven architectures and enable workflows to communicate, coordinate, and react to changes in their environment effectively. They empower workflows to operate in real-time, making them well-suited for scenarios requiring dynamic, responsive behavior.
 
 See the [DSL reference](dsl-reference.md#listen) for more details about listen tasks.
 
 ### Extensions
 
-Extensions in Serverless Workflow offer a flexible way to extend the functionality of tasks within a workflow. They allow developers to inject custom logic, perform pre- or post-processing tasks, and modify task behavior dynamically based on runtime conditions. With extensions, developers can enhance workflow capabilities, promote code reuse, and maintain consistency across workflows.
+Extensions in Open Workflow offer a flexible way to extend the functionality of tasks within a workflow. They allow developers to inject custom logic, perform pre- or post-processing tasks, and modify task behavior dynamically based on runtime conditions. With extensions, developers can enhance workflow capabilities, promote code reuse, and maintain consistency across workflows.
 
 For example, extensions can be used to:
 
@@ -729,7 +729,7 @@ Extensions are defined with properties such as `extend`, `when`, `before`, and `
 - **`before`**: Executes tasks before the extended task.
 - **`after`**: Executes tasks after the extended task completes.
 
-Overall, extensions empower developers to build complex workflows with enhanced functionality and maintainability, making Serverless Workflow a powerful tool for orchestrating cloud-native applications.
+Overall, extensions empower developers to build complex workflows with enhanced functionality and maintainability, making Open Workflow Specification a powerful tool for orchestrating cloud-native applications.
 
 See the [DSL reference](dsl-reference.md#extension) for more details about extensions.
 
@@ -770,7 +770,7 @@ do:
 
 ### External Resources
 
-External resources in Serverless Workflow allow you to define and access external assets or services required for workflow execution. 
+External resources in Open Workflow allow you to define and access external assets or services required for workflow execution. 
 
 These resources can include APIs, databases, files, or any other external entities needed by the workflow. Each external resource can be identified by a unique name and is associated with a URI that specifies its location. 
 
@@ -780,11 +780,11 @@ By defining external resources within the workflow, you centralize resource mana
 
 ### Authentication
 
-Authentication in Serverless Workflow specifies the method by which the workflow accesses protected resources or services.
+Authentication in Open Workflow specifies the method by which the workflow accesses protected resources or services.
 
-Amonst others, [external resources](dsl-reference.md#external-resource) and [calls](dsl-reference.md#call) may define authentication.
+Among others, [external resources](dsl-reference.md#external-resource) and [calls](dsl-reference.md#call) may define authentication.
 
-The Serverless Workflow DSL supports a suite of standard authentication mechanisms, amongst which are:
+The Open Workflow DSL supports a suite of standard authentication mechanisms, amongst which are:
 
 - **Basic Authentication**: Utilizes a username-password pair for authentication.
 ```yaml

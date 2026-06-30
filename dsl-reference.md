@@ -1,4 +1,4 @@
-# Serverless Workflow DSL - Reference
+# Open Workflow DSL - Reference
 
 ## Table of Contents
 
@@ -57,7 +57,6 @@
   + [Authentication](#authentication)
     - [Basic](#basic-authentication)
     - [Bearer](#bearer-authentication)
-    - [Certificate](#certificate-authentication)
     - [Digest](#digest-authentication)
     - [OAUTH2](#oauth2-authentication)
     - [OpenIdConnect](#openidconnect-authentication)
@@ -88,7 +87,7 @@
 
 ## Abstract
 
-This document provides comprehensive definitions and detailed property tables for all the concepts discussed in the Serverless Workflow DSL. It serves as a reference guide, explaining the structure, components, and configurations available within the DSL. By exploring this document, users will gain a thorough understanding of how to define, configure, and manage workflows, including task definitions, flow directives, and state transitions. This foundational knowledge will enable users to effectively utilize the DSL for orchestrating serverless functions and automating processes.
+This document provides comprehensive definitions and detailed property tables for all the concepts discussed in the Open Workflow DSL. It serves as a reference guide, explaining the structure, components, and configurations available within the DSL. By exploring this document, users will gain a thorough understanding of how to define, configure, and manage workflows, including task definitions, flow directives, and state transitions. This foundational knowledge will enable users to effectively utilize the DSL for orchestrating functions and automating processes.
 
 ## Definitions
 
@@ -156,8 +155,8 @@ Configures a workflow's runtime expression evaluation.
 
 | Name | Type | Required | Description|
 |:--|:---:|:---:|:---|
-| language | `string` | `yes` | The language used for writting runtime expressions.<br>*Defaults to `jq`.* |
-| mode | `string` | `yes` | The runtime expression evaluation mode.<br>*Supported values are:*<br>- `strict`: requires all expressions to be enclosed within `${ }` for proper identification and evaluation.<br>- `loose`: evaluates any value provided. If the evaluation fails, it results in a string with the expression as its content.<br>*Defaults to `strict`.*
+| language | `string` | `no` | The language used for writing runtime expressions.<br>*Defaults to `jq`.* |
+| mode | `string` | `no` | The runtime expression evaluation mode.<br>*Supported values are:*<br>- `strict`: requires all expressions to be enclosed within `${ }` for proper identification and evaluation.<br>- `loose`: evaluates any value provided. If the evaluation fails, it results in a string with the expression as its content.<br>*Defaults to `strict`.*
 
 #### Examples
 
@@ -262,7 +261,7 @@ It encapsulates a specific action or set of actions that need to be executed in 
 
 By breaking down the [workflow](#workflow) into manageable [tasks](#task), organizations can effectively coordinate and track progress, enabling efficient collaboration and ensuring that work is completed in a structured and organized manner.
 
-The Serverless Workflow DSL defines a list of [tasks](#task) that **must be** supported by all runtimes:
+The Open Workflow DSL defines a list of [tasks](#task) that **must be** supported by all runtimes:
 
 - [Call](#call), used to call services and/or functions.
 - [Do](#do), used to define one or more subtasks to perform in sequence.
@@ -316,7 +315,7 @@ do:
         endpoint: https://petstore.swagger.io/v2/pet/{petId}
 ```
 
-Serverless Workflow defines several default functions that **MUST** be supported by all implementations and runtimes:
+Open Workflow Specification defines several default functions that **MUST** be supported by all implementations and runtimes:
 
 - [AsyncAPI](#asyncapi-call)
 - [gRPC](#grpc-call)
@@ -965,7 +964,7 @@ do:
 > [!NOTE]
 > When a `container process` is executed, runtime implementations are recommended to follow a predictable naming convention for the container name. This can improve monitoring, logging, and container lifecycle management.
 >
-> The Serverless Workflow specification recommends using the following convention: `{workflow.name}-{uuid}.{workflow.namespace}-{task.name}`
+> The Open Workflow Specification recommends using the following convention: `{workflow.name}-{uuid}.{workflow.namespace}-{task.name}`
 
 ##### Script Process
 
@@ -984,7 +983,7 @@ Enables the execution of custom scripts or code within a workflow, empowering wo
 
 
 > [!WARNING]
-> To ensure cross-compatibility, Serverless Workflow strictly limits the versions of supported scripting languages. These versions may evolve with future releases. If you wish to use a different version of a language, you may do so by utilizing the [`container process`](#container-process).
+> To ensure cross-compatibility, Open Workflow Specification strictly limits the versions of supported scripting languages. These versions may evolve with future releases. If you wish to use a different version of a language, you may do so by utilizing the [`container process`](#container-process).
 
 **Supported languages**
 | Language | Version |
@@ -1708,7 +1707,6 @@ Defines the mechanism used to authenticate users and workflows attempting to acc
 | use | `string` | `no` | The name of the top-level authentication definition to use. Cannot be used by authentication definitions defined at top level. |
 | basic | [`basicAuthentication`](#basic-authentication) | `no` | The `basic` authentication scheme to use, if any.<br>Required if no other property has been set, otherwise ignored. |
 | bearer | [`bearerAuthentication`](#bearer-authentication) | `no` | The `bearer` authentication scheme to use, if any.<br>Required if no other property has been set, otherwise ignored. |
-| certificate | [`certificateAuthentication`](#certificate-authentication) | `no` | The `certificate` authentication scheme to use, if any.<br>Required if no other property has been set, otherwise ignored. |
 | digest | [`digestAuthentication`](#digest-authentication) | `no` | The `digest` authentication scheme to use, if any.<br>Required if no other property has been set, otherwise ignored. |
 | oauth2 | [`oauth2`](#oauth2-authentication) | `no` | The `oauth2` authentication scheme to use, if any.<br>Required if no other property has been set, otherwise ignored. |
 | oidc | [`oidc`](#openidconnect-authentication) | `no` | The `oidc` authentication scheme to use, if any.<br>Required if no other property has been set, otherwise ignored. |
@@ -1804,9 +1802,6 @@ do:
             bearer:
               token: ${ .user.token }
 ```
-
-#### Certificate Authentication
-
 
 #### Digest Authentication
 
@@ -1964,7 +1959,7 @@ A **resource catalog** is an external collection of reusable components, such as
 
 Each catalog is defined by an `endpoint` property, specifying the root URL where the resources are hosted, enabling workflows to access external functions and services. For portability, catalogs must adhere to a specific file structure, as defined [here](https://github.com/serverlessworkflow/catalog?tab=readme-ov-file#structure).
 
-For more information about catalogs, refer to the [Serverless Workflow DSL document](https://github.com/serverlessworkflow/specification/blob/main/dsl.md#catalogs).
+For more information about catalogs, refer to the [Open Workflow DSL document](https://github.com/serverlessworkflow/specification/blob/main/dsl.md#catalogs).
 
 #### Properties
 
@@ -2132,7 +2127,7 @@ Represents the configuration of an event consumption strategy.
 
 ### Event Properties
 
-An event object typically includes details such as the event type, source, timestamp, and unique identifier along with any relevant data payload. The [Cloud Events specification](https://cloudevents.io/), favored by Serverless Workflow, standardizes this structure to ensure interoperability across different systems and services.
+An event object typically includes details such as the event type, source, timestamp, and unique identifier along with any relevant data payload. The [CloudEvents specification](https://cloudevents.io/), favored by Open Workflow Specification, standardizes this structure to ensure interoperability across different systems and services.
 
 #### Properties
 
@@ -2147,7 +2142,7 @@ An event object typically includes details such as the event type, source, times
 | dataschema | `string` | `no` | An URI formatted string, or [runtime expression](dsl.md#runtime-expressions), that identifies the schema that `data` adheres to. |
 | data | `any` | `no` | The event payload. |
 
-*Additional properties can be supplied, see the Cloud Events specification [documentation](https://github.com/cloudevents/spec/blob/main/cloudevents/spec.md#extension-context-attributes) for more info.*
+*Additional properties can be supplied, see the CloudEvents specification [documentation](https://github.com/cloudevents/spec/blob/main/cloudevents/spec.md#extension-context-attributes) for more info.*
 
 *When used in an [`eventFilter`](#event-filter), at least one property must be supplied.*
 
@@ -2176,7 +2171,7 @@ A correlation is a link between events and data, established by mapping event at
 
 ### Retry
 
-The Retry is a fundamental concept in the Serverless Workflow DSL, used to define the strategy for retrying a failed task when an error is encountered during execution. This policy provides developers with fine-grained control over how and when to retry failed tasks, enabling robust error handling and fault tolerance within workflows.
+The Retry is a fundamental concept in the Open Workflow DSL, used to define the strategy for retrying a failed task when an error is encountered during execution. This policy provides developers with fine-grained control over how and when to retry failed tasks, enabling robust error handling and fault tolerance within workflows.
 
 #### Properties
 

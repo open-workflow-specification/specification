@@ -3,7 +3,7 @@
 [<img alt="GitHub Release" src="https://img.shields.io/github/v/release/serverlessworkflow/specification?label=Release">](https://github.com/serverlessworkflow/specification/releases/latest)
 <br>
 [<img src="http://img.shields.io/badge/Website-blue?style=flat&logo=google-chrome&logoColor=white">](https://serverlessworkflow.io/) 
-[<img src="http://img.shields.io/badge/Slack-4A154B?style=flat&logo=slack&logoColor=white">](https://cloud-native.slack.com/messages/serverless-workflow) 
+[<img src="http://img.shields.io/badge/Slack-4A154B?style=flat&logo=slack&logoColor=white">](https://cloud-native.slack.com/messages/open-workflow) 
 [<img src="https://img.shields.io/badge/LinkedIn-blue?logo=linkedin&logoColor=white">](https://www.linkedin.com/company/serverless-workflow/)
 [<img src="https://img.shields.io/twitter/follow/CNCFWorkflow?style=social">](https://twitter.com/CNCFWorkflow)
 
@@ -29,17 +29,17 @@
 
 ## About
 
-Serverless Workflow presents a vendor-neutral, open-source, and entirely community-driven ecosystem tailored for defining and executing DSL-based workflows in the realm of Serverless technology. 
+Open Workflow Specification presents a vendor-neutral, open-source, and entirely community-driven ecosystem for defining and executing DSL-based workflows. 
 
-The Serverless Workflow DSL is a high-level language that reshapes the terrain of workflow creation, boasting a design that is ubiquitous, intuitive, imperative, and fluent. 
+The Open Workflow DSL is a high-level language that reshapes the terrain of workflow creation, boasting a design that is ubiquitous, intuitive, imperative, and fluent. 
 
 Bid farewell to convoluted coding and platform dependencies—now, crafting powerful workflows is effortlessly within reach for everyone!
 
 Key features:
 
-- **Easy to Use**: Designed for universal understanding, Serverless Workflow DSL enables users to quickly grasp workflow concepts and create complex workflows effortlessly.
+- **Easy to Use**: Designed for universal understanding, Open Workflow DSL enables users to quickly grasp workflow concepts and create complex workflows effortlessly.
 - **Event Driven**: Seamlessly integrate events into workflows with support for various formats, including CloudEvents, allowing for event-driven workflow architectures.
-- **Service Oriented**: The Serverless Workflow DSL empowers developers to seamlessly integrate with service-oriented architectures, allowing them to define workflows that interact with various services over standard application protocols like HTTP, GRPC, OpenAPI, AxsyncAPI, and more.
+- **Service Oriented**: The Open Workflow DSL empowers developers to seamlessly integrate with service-oriented architectures, allowing them to define workflows that interact with various services over standard application protocols like HTTP, GRPC, OpenAPI, AsyncAPI, and more.
 - **FaaS Centric**: Seamlessly invoke functions hosted on various platforms within workflows, promoting a function-as-a-service (FaaS) paradigm and enabling microservices architectures.
 - **Timely**: Define timeouts for workflows and tasks to manage execution duration effectively.
 - **Fault Tolerant**: Easily define error handling strategies to manage and recover from errors that may occur during workflow execution, ensuring robustness and reliability.
@@ -50,26 +50,26 @@ Key features:
 
 ## Ecosystem
 
-Serverless Workflow ecosystem is hosted by the [Cloud Native Computing Foundation (CNCF)](https://www.cncf.io/) and was approved as a
+Open Workflow Specification ecosystem is hosted by the [Cloud Native Computing Foundation (CNCF)](https://www.cncf.io/) and was approved as a
 Cloud Native Sandbox level project on July 14, 2020.
 
-It encompasses a comprehensive suite of components and tools designed to facilitate the creation, management, and execution of serverless workflows. 
+It encompasses a comprehensive suite of components and tools designed to facilitate the creation, management, and execution of workflows. 
 
-1. **[DSL](dsl.md) (Domain Specific Language)**: The core of the ecosystem, defining the fundamental syntax and semantics of Serverless Workflow specifications.
+1. **[DSL](dsl.md) (Domain Specific Language)**: The core of the ecosystem, defining the fundamental syntax and semantics of the Open Workflow Specification.
 
 2. **[CTK](/ctk/README.md) (Conformance Test Kit)**: A set of Gherkin features utilized for both conformance testing and Behavior Driven Design (BDD), ensuring compliance and facilitating testing across implementations.
 
-3. **[SDKs](#sdks) (Software Development Kits)**: These enable developers to interact with serverless workflows in various programming languages, providing functionalities such as reading, writing, building, and validating workflows.
+3. **[SDKs](#sdks) (Software Development Kits)**: These enable developers to interact with workflows in various programming languages, providing functionalities such as reading, writing, building, and validating workflows.
 
-4. **[Runtimes](#runtimes)**: Dedicated environments for executing workflows defined using the Serverless Workflow DSL, ensuring seamless deployment and operation within diverse runtime environments.
+4. **[Runtimes](#runtimes)**: Dedicated environments for executing workflows defined using the Open Workflow DSL, ensuring seamless deployment and operation within diverse runtime environments.
 
-5. **[Tooling](#tooling)**: Additional utilities and resources tailored to enhance the development, debugging, and management of serverless workflows, streamlining the workflow lifecycle from creation to deployment and maintenance.
+5. **[Tooling](#tooling)**: Additional utilities and resources tailored to enhance the development, debugging, and management of workflows, streamlining the workflow lifecycle from creation to deployment and maintenance.
 
 ### SDKs
 
-The Serverless Workflow SDKs are essential tools designed to assist developers in consuming, parsing, validating, and testing their workflows utilizing the Serverless Workflow DSL.
+The Open Workflow Specification SDKs are essential tools designed to assist developers in consuming, parsing, validating, and testing their workflows utilizing the Open Workflow DSL.
 
-These SDKs empower developers to seamlessly integrate serverless workflows into their applications, providing robust support for various programming languages. By offering comprehensive functionality, they streamline the development process and enhance workflow management.
+These SDKs empower developers to seamlessly integrate workflows into their applications, providing robust support for various programming languages. By offering comprehensive functionality, they streamline the development process and enhance workflow management.
 
 Explore our SDKs for different programming languages:
 
@@ -92,17 +92,17 @@ No matter your preferred language, our SDKs provide the tools you need to levera
 | [Apache KIE SonataFlow](https://sonataflow.org) | Apache KIE SonataFlow is a tool for building cloud-native workflow applications. You can use it to do the services and events orchestration and choreography. |
 | [Java SDK reference implementation](https://github.com/serverlessworkflow/sdk-java/tree/main/impl) | Full compliant Java implementation of the specification |
 | [Lemline](https://github.com/lemline/lemline) | Lemline is a highly scalable runtime running on top of your existing messaging infrastructure. |
-| [Synapse](https://github.com/serverlessworkflow/synapse) | Synapse is a scalable, cross-platform, fully customizable platform for managing and running Serverless Workflows. |
+| [Synapse](https://github.com/serverlessworkflow/synapse) | Synapse is a scalable, cross-platform, fully customizable platform for managing and running workflows defined with Open Workflow Specification. |
 
 ### Tooling
 
-In order to enhance developer experience with the Serverless Workflow DSL, we provide a [Visual Studio Code extension](https://marketplace.visualstudio.com/items?itemName=serverlessworkflow.serverless-workflow-vscode-extension).
+In order to enhance developer experience with the Open Workflow DSL, we provide a [Visual Studio Code extension](https://marketplace.visualstudio.com/items?itemName=serverlessworkflow.serverless-workflow-vscode-extension).
 
 The sources of the extension can be found [here](https://github.com/serverlessworkflow/vscode-extension).
 
 ### CNCF Landscape
 
-Serverless Workflow project falls under the [CNCF "App Definition and Development"](https://landscape.cncf.io/card-mode?category=app-definition-and-development&grouping=category) category.
+Open Workflow Specification project falls under the [CNCF "App Definition and Development"](https://landscape.cncf.io/card-mode?category=app-definition-and-development&grouping=category) category.
 
 It is a member project of the [CNCF Serverless Working Group](https://github.com/cncf/wg-serverless).
 
@@ -112,13 +112,13 @@ It is a member project of the [CNCF Serverless Working Group](https://github.com
 
 ## Documentation
 
-The documentation for Serverless Workflow includes:
+The documentation for Open Workflow Specification includes:
 
-- [**DSL**](dsl.md): Documents the fundamentals aspects and concepts of the Serverless Workflow DSL.
-- [**DSL Reference**](dsl-reference.md): References all the definitions used by the Serverless Workflow DSL.
-- [**Comparison**](comparison.md): See how Serverless Workflow compares to other DSLs.
-- [**Examples**](./examples/README.md): A collection of practical examples demonstrating specific features and functionalities of Serverless Workflow.
-- [**Use Cases**](./use-cases/README.md): Detailed use cases illustrating how Serverless Workflow can be applied in various real-world scenarios.
+- [**DSL**](dsl.md): Documents the fundamentals aspects and concepts of the Open Workflow DSL.
+- [**DSL Reference**](dsl-reference.md): References all the definitions used by the Open Workflow DSL.
+- [**Comparison**](comparison.md): See how Open Workflow Specification compares to other DSLs.
+- [**Examples**](./examples/README.md): A collection of practical examples demonstrating specific features and functionalities of Open Workflow Specification.
+- [**Use Cases**](./use-cases/README.md): Detailed use cases illustrating how Open Workflow Specification can be applied in various real-world scenarios.
 
 ## Community
 
@@ -134,7 +134,7 @@ reference the [Ownership of Copyrights in CNCF Project Contributions](https://gi
   
 ### Communication
 
-- Community Slack Channel: [https://slack.cncf.io/](https://slack.cncf.io/) -  #serverless-workflow
+- Community Slack Channel: [https://slack.cncf.io/](https://slack.cncf.io/) -  #open-workflow
 - [Weekly project meetings](#weekly-meetings)
 - Project Maintainers Email: [cncf-serverlessws-maintainers](mailto:cncf-serverlessws-maintainers@lists.cncf.io)
 - Serverless WG Email: [cncf-wg-serverless](mailto:cncf-wg-serverless@lists.cncf.io)
@@ -142,7 +142,7 @@ reference the [Ownership of Copyrights in CNCF Project Contributions](https://gi
 
 ### Governance
 
-The Serverless Workflow Project Governance [document](governance.md) delineates the roles, procedures, and principles guiding the collaborative development and maintenance of the project. 
+The Open Workflow Specification Project Governance [document](GOVERNANCE.md) delineates the roles, procedures, and principles guiding the collaborative development and maintenance of the project. 
 
 It emphasizes adherence to the CNCF Code of Conduct, defines the responsibilities of maintainers, reviewers, and emeritus maintainers, outlines procedures for their addition and removal, and establishes guidelines for subprojects' inclusion and compliance.
 
@@ -150,7 +150,7 @@ Decision-making processes are consensus-driven, facilitated through structured p
 
 Overall, the document reflects the project's commitment to transparency, accountability, and inclusive collaboration, fostering an environment conducive to sustained growth and innovation.
 
-See the project's Governance Model [here](governance.md).
+See the project's Governance Model [here](GOVERNANCE.md).
 
 ### Code of Conduct
 
@@ -168,9 +168,9 @@ See the project's Code of Conduct [here](code-of-conduct.md).
 
 ### Weekly Meetings
 
-The Serverless Workflow team meets weekly, every Thursday at 9AM ET (USA Eastern Time).
+The Open Workflow Specification team meets weekly, every Thursday at 9AM ET (USA Eastern Time).
 
-To register for meetings please visit the [CNCF Community Calendar](https://tockify.com/cncf.public.events/monthly?search=serverless%20workflow).
+To register for meetings please visit the [CNCF Community Calendar](https://tockify.com/cncf.public.events/monthly?search=open%20workflow).
 
 You can register for individual meetings or for the entire series.
 
@@ -178,11 +178,11 @@ You can register for individual meetings or for the entire series.
 
 ### Adoption
 
-If you're using Serverless Workflow in your projects and would like to showcase your adoption, become an Adopter! By joining our community of adopters, you'll have the opportunity to share your experiences, contribute feedback, and collaborate with like-minded individuals and organizations leveraging Serverless Workflow to power their workflows.
+If you're using Open Workflow Specification in your projects and would like to showcase your adoption, become an Adopter! By joining our community of adopters, you'll have the opportunity to share your experiences, contribute feedback, and collaborate with like-minded individuals and organizations leveraging Open Workflow Specification to power their workflows.
 
 ### Sponsoring
 
-As an open-source project, Serverless Workflow relies on the support of sponsors to sustain its development and growth. 
+As an open-source project, Open Workflow Specification relies on the support of sponsors to sustain its development and growth. 
 
 By becoming a sponsor, you'll not only demonstrate your commitment to advancing serverless technologies but also gain visibility within our vibrant community. 
 
