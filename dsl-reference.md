@@ -1857,7 +1857,7 @@ Defines the fundamentals of an 'oauth2' authentication.
 | client.assertion | `string` | `no` | A JWT containing a signed assertion with your application credentials.<br>Required when `client.authentication` has been set to `private_key_jwt`. |
 | client.authentication | `string` | `no` | The client authentication method to use.<br>Supported values are `client_secret_basic`, `client_secret_post`, `client_secret_jwt`, `private_key_jwt` or `none`.<br>Defaults to `client_secret_post`. |
 | request.encoding | `string` | `no` | The encoding of the token request.<br>Supported values are `application/x-www-form-urlencoded` and `application/json`.<br>Defaults to application/x-www-form-urlencoded. |
-| issuers | `uri-template[]` | `no` | A list that contains that contains valid issuers that will be used to check against the issuer of generated tokens. |
+| issuers | `uri-template[]` | `no` | A list that contains valid issuers that will be used to check against the issuer of generated tokens. |
 | scopes | `string[]` | `no` | The scopes, if any, to request the token for. |
 | audiences | `string[]` | `no` | The audiences, if any, to request the token for. |
 | username | `string` | `no` | The username to use. Used only if the grant type is `Password`. |
