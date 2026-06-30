@@ -332,13 +332,16 @@ The [AsyncAPI Call](#asyncapi-call) enables workflows to interact with external 
 | Name | Type | Required | Description |
 |:-----|:----:|:--------:|:------------|
 | document | [`externalResource`](#external-resource) | `yes` | The AsyncAPI document that defines the [operation](https://www.asyncapi.com/docs/reference/specification/v3.0.0#operationObject) to call. |
-| channel | `string` | `yes` | The name of the channel on which to perform the operation. The operation to perform is defined by declaring either `message`, in which case the [channel](https://v2.asyncapi.com/docs/reference/specification/v2.6.0#channelItemObject)'s `publish` operation will be executed, or `subscription`, in which case the [channel](https://v2.asyncapi.com/docs/reference/specification/v2.6.0#channelItemObject)'s `subscribe` operation will be executed.<br>*Used only in case the referenced document uses AsyncAPI `v2.6.0`.*  |
-| operation | `string` | `yes` | A reference to the AsyncAPI [operation](https://www.asyncapi.com/docs/reference/specification/v3.0.0#operationObject) to call.<br>*Used only in case the referenced document uses AsyncAPI `v3.0.0`.*  |
+| channel | `string` | `no` | The name of the channel on which to perform the operation. The operation to perform is defined by declaring either `message`, in which case the [channel](https://v2.asyncapi.com/docs/reference/specification/v2.6.0#channelItemObject)'s `publish` operation will be executed, or `subscription`, in which case the [channel](https://v2.asyncapi.com/docs/reference/specification/v2.6.0#channelItemObject)'s `subscribe` operation will be executed.<br>*Used only in case the referenced document uses AsyncAPI `v2.6.0`.*  |
+| operation | `string` | `no` | A reference to the AsyncAPI [operation](https://www.asyncapi.com/docs/reference/specification/v3.0.0#operationObject) to call.<br>*Used only in case the referenced document uses AsyncAPI `v3.0.0`.*  |
 | server | [`asyncApiServer`](#asyncapi-server) | `no` | An object used to configure to the [server](https://www.asyncapi.com/docs/reference/specification/v3.0.0#serverObject) to call the specified AsyncAPI [operation](https://www.asyncapi.com/docs/reference/specification/v3.0.0#operationObject) on.<br>If not set, default to the first [server](https://www.asyncapi.com/docs/reference/specification/v3.0.0#serverObject) matching the operation's channel. |
 | protocol | `string` | `no` | The [protocol](https://www.asyncapi.com/docs/reference/specification/v3.0.0#definitionsProtocol) to use to select the target [server](https://www.asyncapi.com/docs/reference/specification/v3.0.0#serverObject). <br>Ignored if `server` has been set.<br>*Supported values are:  `amqp`, `amqp1`, `anypointmq`, `googlepubsub`, `http`, `ibmmq`, `jms`, `kafka`, `mercure`, `mqtt`, `mqtt5`, `nats`, `pulsar`, `redis`, `sns`, `solace`, `sqs`, `stomp` and `ws`* |
 | message  | [`asyncApiMessage`](#asyncapi-outbound-message) | `no` | An object used to configure the message to publish using the target operation.<br>*Required if `subscription` has not been set.* |
 | subscription | [`asyncApiSubscription`](#asyncapi-subscription) | `no` | An object used to configure the subscription to messages consumed using the target operation.<br>*Required if `message` has not been set.*  |
 | authentication | `string`<br>[`authentication`](#authentication) | `no` | The authentication policy, or the name of the authentication policy, to use when calling the AsyncAPI operation. | 
+
+> [!NOTE]
+> Exactly one of `channel` (AsyncAPI `v2.6.0`) or `operation` (AsyncAPI `v3.0.0`) **must** be set, paired with exactly one of `message` or `subscription`.
 
 ###### Examples
 
@@ -895,7 +898,7 @@ do:
   - runScript:
       run:
         script:
-          language: javascript
+          language: js
           code: >
             Some cool multiline script
 
@@ -930,7 +933,7 @@ Enables the execution of external processes encapsulated within a containerized 
 | stdin | `string` | `no` | A runtime expression, if any, passed as standard input to the command or default container CMD|
 | arguments | `string[]` | `no` | A list of the arguments, if any, passed as argv to the command or default container CMD |
 | lifetime | [`containerLifetime`](#container-lifetime) | `no` | An object used to configure the container's lifetime. |
-| pullPolicy | `string` | `no` | Policy that controls how the container's image should be pulled from the registry. Defaults to `ifNotPresent` |
+| pullPolicy | `string` | `no` | Policy that controls how the container's image should be pulled from the registry.<br>*Supported values are `ifNotPresent`, `always` and `never`.*<br>*Defaults to `ifNotPresent`.* |
 
 ###### Examples
 
@@ -1003,7 +1006,7 @@ do:
   - runScript:
       run:
         script:
-          language: javascript
+          language: js
           arguments:
           - hello
           - world
@@ -1060,6 +1063,7 @@ Enables the invocation and execution of nested workflows within a parent workflo
 
 | Name | Type | Required | Description |
 |:--|:---:|:---:|:---|
+| namespace | `string` | `yes` | The namespace the workflow to run belongs to. |
 | name | `string` | `yes` | The name of the workflow to run |
 | version | `string` | `yes` | The version of the workflow to run. Defaults to `latest` |
 | input | `any` | `no` | The data, if any, to pass as input to the workflow to execute. The value should be validated against the target workflow's input schema, if specified |
@@ -1245,7 +1249,7 @@ Defines the configuration of a catch clause, which a concept used to catch error
 
 | Name | Type | Required | Description |
 |:--|:---:|:---:|:---|
-| errors | [`errorFilter`](#error) | `no` | The definition of the errors to catch. |
+| errors.with | [`errorFilter`](#error) | `no` | A static filter, used to catch only the errors whose properties match the specified values. |
 | as | `string` | `no` | The name of the runtime expression variable to save the error as. Defaults to 'error'. |
 | when | `string`| `no` | A runtime expression used to determine whether or not to catch the filtered error. |
 | exceptWhen | `string` | `no` | A runtime expression used to determine whether or not to catch the filtered error. |
@@ -1857,7 +1861,7 @@ Defines the fundamentals of an 'oauth2' authentication.
 | client.assertion | `string` | `no` | A JWT containing a signed assertion with your application credentials.<br>Required when `client.authentication` has been set to `private_key_jwt`. |
 | client.authentication | `string` | `no` | The client authentication method to use.<br>Supported values are `client_secret_basic`, `client_secret_post`, `client_secret_jwt`, `private_key_jwt` or `none`.<br>Defaults to `client_secret_post`. |
 | request.encoding | `string` | `no` | The encoding of the token request.<br>Supported values are `application/x-www-form-urlencoded` and `application/json`.<br>Defaults to application/x-www-form-urlencoded. |
-| issuers | `uri-template[]` | `no` | A list that contains that contains valid issuers that will be used to check against the issuer of generated tokens. |
+| issuers | `string[]` | `no` | A list that contains valid issuers that will be used to check against the issuer of generated tokens. |
 | scopes | `string[]` | `no` | The scopes, if any, to request the token for. |
 | audiences | `string[]` | `no` | The audiences, if any, to request the token for. |
 | username | `string` | `no` | The username to use. Used only if the grant type is `Password`. |
@@ -1919,7 +1923,7 @@ Defines the fundamentals of an 'oidc' authentication.
 | client.assertion | `string` | `no` | A JWT containing a signed assertion with your application credentials.<br>Required when `client.authentication` has been set to `private_key_jwt`. |
 | client.authentication | `string` | `no` | The client authentication method to use.<br>Supported values are `client_secret_basic`, `client_secret_post`, `client_secret_jwt`, `private_key_jwt` or `none`.<br>Defaults to `client_secret_post`. |
 | request.encoding | `string` | `no` | The encoding of the token request.<br>Supported values are `application/x-www-form-urlencoded` and `application/json`.<br>Defaults to application/x-www-form-urlencoded. |
-| issuers | `uri-template[]` | `no` | A list that contains that contains valid issuers that will be used to check against the issuer of generated tokens. |
+| issuers | `string[]` | `no` | A list that contains valid issuers that will be used to check against the issuer of generated tokens. |
 | scopes | `string[]` | `no` | The scopes, if any, to request the token for. |
 | audiences | `string[]` | `no` | The audiences, if any, to request the token for. |
 | username | `string` | `no` | The username to use. Used only if the grant type is `Password`. |
@@ -2001,7 +2005,7 @@ Extensions enable the execution of tasks prior to those they extend, offering th
 
 | Property | Type | Required | Description |
 |----------|:----:|:--------:|-------------|
-| extend |  `string` | `yes` | The type of task to extend<br>Supported values are: `call`, `composite`, `emit`, `extension`, `for`, `listen`, `raise`, `run`, `set`, `switch`, `try`, `wait` and `all` |
+| extend |  `string` | `yes` | The type of task to extend<br>Supported values are: `call`, `composite`, `emit`, `for`, `listen`, `raise`, `run`, `set`, `switch`, `try`, `wait` and `all` |
 | when | `string` | `no` | A runtime expression used to determine whether or not the extension should apply in the specified context |
 | before | [`task[]`](#task) | `no` | The list of tasks to execute, if any, before the extended task |
 | after | [`task[]`](#task) | `no` | The list of tasks to execute, if any, after the extended task |
@@ -2384,11 +2388,11 @@ Defines a duration. Durations can be defined through properties, with an ISO 860
 
 | Property | Type | Required | Description |
 |----------|:----:|:--------:|-------------|
-| Days | `integer` | `no` | Number of days, if any. |
-| Hours | `integer` | `no` | Number of hours, if any. |
-| Minutes | `integer` | `no`| Number of minutes, if any. |
-| Seconds | `integer` | `no`| Number of seconds, if any. |
-| Milliseconds | `integer` | `no`| Number of milliseconds, if any. |
+| days | `integer` | `no` | Number of days, if any. |
+| hours | `integer` | `no` | Number of hours, if any. |
+| minutes | `integer` | `no`| Number of minutes, if any. |
+| seconds | `integer` | `no`| Number of seconds, if any. |
+| milliseconds | `integer` | `no`| Number of milliseconds, if any. |
 
 #### Examples
 
@@ -2523,7 +2527,7 @@ do:
   - runScript:
       run:
         script:
-          language: javascript
+          language: js
           code: >
             Some cool multiline script
         return: code

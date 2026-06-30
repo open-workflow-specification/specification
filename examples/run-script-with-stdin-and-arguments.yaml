@@ -7,7 +7,7 @@ do:
   - runScript:
       run:
         script:
-          language: javascript
+          language: js
           stdin: "Hello Workflow"
           environment:
            foo: bar

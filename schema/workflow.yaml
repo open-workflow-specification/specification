@@ -1238,6 +1238,7 @@ $defs:
     type: object
     title: OAuth2AuthenticationData
     description: Inline configuration of the OAuth2 authentication policy.
+    required: [ authority, grant ]
     properties:
       authority:
         $ref: '#/$defs/uriTemplate'
@@ -1429,10 +1430,10 @@ $defs:
       instance:
         type: string
         description: if present, means this value should be used for filtering
-      title: 
+      title:
         type: string
         description: if present, means this value should be used for filtering
-      details:
+      detail:
         type: string
         description: if present, means this value should be used for filtering
   uriTemplate:

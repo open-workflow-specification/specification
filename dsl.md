@@ -640,7 +640,7 @@ output:
           description: A boolean indicating whether or not the email address is valid.
 run:
   script:
-    language: javascript
+    language: js
     code: |
       function validateEmail(email) {
         const re = /^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,6}$/;
