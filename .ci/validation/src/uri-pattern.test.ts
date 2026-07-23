@@ -14,12 +14,31 @@
  * limitations under the License.
  */
 
-// Anchored RFC 3986 URI-reference regex used in schema/workflow.yaml
-// for both LiteralUri and LiteralUriTemplate.
-// Adds: $ end anchor, (?!\s*\$\{) to exclude runtime expressions,
-// (?=\S) to reject empty/whitespace-only strings.
-const URI_REFERENCE_PATTERN =
-  /^(?!\s*\$\{)(?=\S)(([^:/?#]+):)?(\/\/([^/?#]*))?([^?#]*)(\?([^#]*))?(#(.*))?$/;
+import * as fs from "fs";
+import * as path from "path";
+import * as yaml from "js-yaml";
+
+const schemaPath = path.resolve(__dirname, "../../../schema/workflow.yaml");
+const schema = yaml.load(
+  fs.readFileSync(schemaPath, "utf-8")
+) as any;
+
+const uriTemplateDef = schema["$defs"]["uriTemplate"];
+const literalUriTemplateDef = uriTemplateDef.anyOf.find(
+  (v: any) => v.title === "LiteralUriTemplate"
+);
+const literalUriDef = uriTemplateDef.anyOf.find(
+  (v: any) => v.title === "LiteralUri"
+);
+
+const LITERAL_URI_PATTERN = new RegExp(literalUriDef.pattern);
+const LITERAL_URI_TEMPLATE_PATTERN = new RegExp(literalUriTemplateDef.pattern);
+
+describe("Schema pattern consistency", () => {
+  test("LiteralUri and LiteralUriTemplate use the same pattern", () => {
+    expect(literalUriDef.pattern).toBe(literalUriTemplateDef.pattern);
+  });
+});
 
 describe("LiteralUri pattern (RFC 3986 URI-reference)", () => {
   const absoluteUris = [
@@ -61,26 +80,26 @@ describe("LiteralUri pattern (RFC 3986 URI-reference)", () => {
   const networkPathUris = ["//example.com/path", "//localhost:8080/api"];
 
   test.each(absoluteUris)("accepts absolute URI: %s", (uri) => {
-    expect(URI_REFERENCE_PATTERN.test(uri)).toBe(true);
+    expect(LITERAL_URI_PATTERN.test(uri)).toBe(true);
   });
 
   test.each(relativePathUris)("accepts relative path URI: %s", (uri) => {
-    expect(URI_REFERENCE_PATTERN.test(uri)).toBe(true);
+    expect(LITERAL_URI_PATTERN.test(uri)).toBe(true);
   });
 
   test.each(absolutePathUris)("accepts absolute-path URI: %s", (uri) => {
-    expect(URI_REFERENCE_PATTERN.test(uri)).toBe(true);
+    expect(LITERAL_URI_PATTERN.test(uri)).toBe(true);
   });
 
   test.each(urisWithQueryFragment)(
     "accepts URI with query/fragment: %s",
     (uri) => {
-      expect(URI_REFERENCE_PATTERN.test(uri)).toBe(true);
+      expect(LITERAL_URI_PATTERN.test(uri)).toBe(true);
     }
   );
 
   test.each(networkPathUris)("accepts network-path URI: %s", (uri) => {
-    expect(URI_REFERENCE_PATTERN.test(uri)).toBe(true);
+    expect(LITERAL_URI_PATTERN.test(uri)).toBe(true);
   });
 });
 
@@ -107,14 +126,14 @@ describe("LiteralUriTemplate pattern (RFC 3986 URI-reference)", () => {
   test.each(absoluteTemplates)(
     "accepts absolute URI template: %s",
     (uri) => {
-      expect(URI_REFERENCE_PATTERN.test(uri)).toBe(true);
+      expect(LITERAL_URI_TEMPLATE_PATTERN.test(uri)).toBe(true);
     }
   );
 
   test.each(relativeTemplates)(
     "accepts relative URI template: %s",
     (uri) => {
-      expect(URI_REFERENCE_PATTERN.test(uri)).toBe(true);
+      expect(LITERAL_URI_TEMPLATE_PATTERN.test(uri)).toBe(true);
     }
   );
 });
@@ -130,15 +149,15 @@ describe("URI pattern rejects invalid or ambiguous values", () => {
   test.each(runtimeExpressions)(
     "rejects runtime expression: %s",
     (expr) => {
-      expect(URI_REFERENCE_PATTERN.test(expr)).toBe(false);
+      expect(LITERAL_URI_PATTERN.test(expr)).toBe(false);
     }
   );
 
   test("rejects empty string", () => {
-    expect(URI_REFERENCE_PATTERN.test("")).toBe(false);
+    expect(LITERAL_URI_PATTERN.test("")).toBe(false);
   });
 
   test("rejects whitespace-only string", () => {
-    expect(URI_REFERENCE_PATTERN.test("   ")).toBe(false);
+    expect(LITERAL_URI_PATTERN.test("   ")).toBe(false);
   });
 });
