@@ -1054,6 +1054,10 @@ $defs:
               $ref: '#/$defs/taskList'
               title: TryTaskCatchDo
               description: The definition of the task(s) to run when catching an error.
+            then:
+              $ref: '#/$defs/flowDirective'
+              title: TryTaskCatchThen
+              description: The flow directive to execute for the error path after the error has been caught (and after executing any `do` tasks, if set). When set, this determines the next transition instead of the try task's top-level `then` or the default sequential flow.
   waitTask:
     type: object
     title: WaitTask

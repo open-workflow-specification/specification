@@ -1,0 +1,26 @@
+document:
+  dsl: '1.0.3'
+  namespace: test
+  name: try-catch-then-directive
+  version: '0.1.0'
+do:
+  - trySomething:
+      try:
+        - callExternalService:
+            call: http
+            with:
+              method: get
+              endpoint: https://external-service.example.com/api
+      catch:
+        errors:
+          with:
+            type: https://serverlessworkflow.io/dsl/errors/types/communication
+            status: 503
+        then: recordFailure
+  - continueProcessing:
+      set:
+        status: ok
+      then: end
+  - recordFailure:
+      set:
+        status: failed
