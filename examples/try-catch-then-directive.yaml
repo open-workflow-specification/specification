@@ -16,11 +16,11 @@ do:
           with:
             type: https://serverlessworkflow.io/dsl/errors/types/communication
             status: 503
-        then: handleError
+        then: recordFailure
   - continueProcessing:
       set:
         status: ok
       then: end
-  - handleError:
+  - recordFailure:
       set:
         status: failed
