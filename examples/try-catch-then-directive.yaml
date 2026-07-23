@@ -20,6 +20,7 @@ do:
   - continueProcessing:
       set:
         status: ok
+      then: end
   - handleError:
       set:
         status: failed
