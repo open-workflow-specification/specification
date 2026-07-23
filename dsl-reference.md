@@ -1450,17 +1450,14 @@ The data carried by the cloud event that notifies that a workflow ran to complet
 |:--|:---:|:---:|:---|
 | name | `string` | `yes` | The qualified name of the workflow ran to completion. |
 | completedAt | `dateTime` | `yes` | The date and time at which the workflow ran to completion. |
-| output | `map` | `no` | The workflow's output, if any. |
+| outputUri | `uri` | `no` | A URI pointing to the workflow's output data, if any. This follows the [Claim Check](https://www.enterpriseintegrationpatterns.com/patterns/messaging/StoreInLibrary.html) pattern to avoid embedding large payloads in the event; events larger than 64 KiB are not guaranteed to be forwarded by intermediaries per the [CloudEvents size limits](https://github.com/cloudevents/spec/blob/main/cloudevents/spec.md#size-limits). |
 
 ###### Examples
 
 ```yaml
 name: orderPetWorkflow-ix7iryakiem8j.samples
 completedAt: '2024-07-26T16:59:57-05:00'
-output:
-  orderId: '0a7f8581-acb9-4133-a378-0460c98ea60c'
-  petId: xt84hj202q14s
-  status: placed
+outputUri: https://workflow-engine.example.com/workflows/orderPetWorkflow-ix7iryakiem8j/output
 ```
 
 ##### Workflow Status Changed Event
@@ -1641,7 +1638,7 @@ The data carried by the cloud event that notifies that a task ran to completion.
 | workflow | `string` | `yes` | The qualified name of the workflow the task that ran to completion belongs to. |
 | task | `uri` | `yes` | A JSON Pointer that references the task that ran to completion. |
 | completedAt | `dateTime` | `yes` | The date and time at which the task ran to completion. |
-| output | `map` | `no` | The task's output, if any. |
+| outputUri | `uri` | `no` | A URI pointing to the task's output data, if any. This follows the [Claim Check](https://www.enterpriseintegrationpatterns.com/patterns/messaging/StoreInLibrary.html) pattern to avoid embedding large payloads in the event; events larger than 64 KiB are not guaranteed to be forwarded by intermediaries per the [CloudEvents size limits](https://github.com/cloudevents/spec/blob/main/cloudevents/spec.md#size-limits). |
 
 ###### Examples
 
@@ -1649,10 +1646,7 @@ The data carried by the cloud event that notifies that a task ran to completion.
 workflow: orderPetWorkflow-ix7iryakiem8j.samples
 task: '/do/1/initialize'
 completedAt: '2024-07-26T16:59:57-05:00'
-output:
-  orderId: '0a7f8581-acb9-4133-a378-0460c98ea60c'
-  petId: xt84hj202q14s
-  status: placed
+outputUri: https://workflow-engine.example.com/workflows/orderPetWorkflow-ix7iryakiem8j/tasks/initialize/output
 ```
 
 ##### Task Status Changed Event
