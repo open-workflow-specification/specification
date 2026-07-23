@@ -1446,7 +1446,7 @@ $defs:
       - title: LiteralUri
         type: string
         format: uri
-        pattern: "^[A-Za-z][A-Za-z0-9+\\-.]*://.*"
+        pattern: "^(([^:/?#]+):)?(//([^/?#]*))?([^?#]*)(\\?([^#]*))?(#(.*))?"
   endpoint:
     title: Endpoint
     description: Represents an endpoint.
