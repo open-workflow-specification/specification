@@ -382,8 +382,8 @@ CloudFlows defines [several arguments](#runtime-expression-arguments) that runti
 
 When the evaluation of an expression fails, runtimes **must** raise an error with type `https://serverlessworkflow.io/spec/1.0.0/errors/expression` and status `400`.
 
-> [!CAUTION]
-> Runtimes **must** evaluate only runtime expressions that are defined in workflow definitions, and **must not** parse or evaluate expression syntax embedded in user-provided input data (for example, `jq`, regular expressions, or similar). Treating user input as executable expressions exposes the system to injection attacks, potentially allowing unauthorized access to system data and resources.
+> [!WARNING]
+> Runtimes **must** evaluate only runtime expressions that are defined in workflow definitions, and **must not** parse or evaluate expression syntax embedded in workflow input or task input data (for example, `jq`, regular expressions, or similar). Treating input data as executable expressions exposes the system to injection attacks, potentially allowing unauthorized access to system data and resources.
 
 #### Runtime expression arguments
 
