@@ -249,7 +249,7 @@ do:
   - raiseUnsupportedEventError:
       raise:
         error:
-          type: https://serverlessworkflow.io/spec/1.0.0/errors/runtime
+          type: https://open-workflow-specification.org/spec/1.0.0/errors/runtime
           status: 400
           title: Unsupported Event
           detail: ${ "The specified station event '\($context.event.type)' is not supported in this context" }
