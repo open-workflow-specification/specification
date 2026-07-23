@@ -1,4 +1,4 @@
-$id: https://serverlessworkflow.io/schemas/1.0.3/workflow.yaml
+$id: https://open-workflow-specification.org/schemas/1.0.3/workflow.yaml
 $schema: https://json-schema.org/draft/2020-12/schema
 description: Open Workflow DSL - Workflow Schema.
 type: object

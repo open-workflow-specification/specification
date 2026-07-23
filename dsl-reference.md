@@ -504,7 +504,7 @@ The [A2A Call](#a2a-call) enables workflows to interact with AI agents described
 > [!NOTE]
 > The `security` and `securitySchemes` fields of the AgentCard contain authentication requirements and schemes for when communicating with the agent.
 >
-> On success the output is the JSON-RPC result. On failure runtimes must raise an error with type [https://serverlessworkflow.io/spec/1.0.0/errors/runtime](https://github.com/serverlessworkflow/specification/blob/main/dsl-reference.md#standard-error-types).
+> On success the output is the JSON-RPC result. On failure runtimes must raise an error with type [https://open-workflow-specification.org/spec/1.0.0/errors/runtime](https://github.com/serverlessworkflow/specification/blob/main/dsl-reference.md#standard-error-types).
 >
 > For `message/stream` and `tasks/resubscribe` methods the output is a sequentially ordered array of all the result objects.
 
@@ -550,7 +550,7 @@ The [MCP Call](#mcp-call) enables workflows to interact with [Model Context Prot
 > In most cases, client libraries handle this initialization automatically.
 
 > [!NOTE]
-> On success the output of the call is the JSON-RPC result. On failure, runtimes must raise an error with type [https://serverlessworkflow.io/spec/1.0.0/errors/runtime](https://github.com/serverlessworkflow/specification/blob/main/dsl-reference.md#standard-error-types).
+> On success the output of the call is the JSON-RPC result. On failure, runtimes must raise an error with type [https://open-workflow-specification.org/spec/1.0.0/errors/runtime](https://github.com/serverlessworkflow/specification/blob/main/dsl-reference.md#standard-error-types).
 
 ###### Examples
 
@@ -1228,7 +1228,7 @@ do:
       catch:
         errors:
           with:
-            type: https://serverlessworkflow.io.io/dsl/errors/types/communication
+            type: https://open-workflow-specification.org/dsl/errors/types/communication
             status: 503
         as: error
         retry:
@@ -1435,7 +1435,7 @@ The data carried by the cloud event that notifies that a workflow has faulted.
 name: orderPetWorkflow-ix7iryakiem8j.samples
 faultedAt: '2024-07-26T16:59:57-05:00'
 error:
-  type: https://serverlessworkflow.io/spec/1.0.0/errors/communication
+  type: https://open-workflow-specification.org/spec/1.0.0/errors/communication
   title: Service Not Available
   status: 503
 ```
@@ -1625,7 +1625,7 @@ workflow: orderPetWorkflow-ix7iryakiem8j.samples
 task: '/do/1/initialize'
 faultedAt: '2024-07-26T16:59:57-05:00'
 error:
-  type: https://serverlessworkflow.io/spec/1.0.0/errors/communication
+  type: https://open-workflow-specification.org/spec/1.0.0/errors/communication
   title: Service Not Available
   status: 503
 ```
@@ -2094,7 +2094,7 @@ Defines the [Problem Details RFC](https://datatracker.ietf.org/doc/html/rfc7807)
 #### Examples
 
 ```yaml
-type: https://serverlessworkflow.io/spec/1.0.0/errors/communication
+type: https://open-workflow-specification.org/spec/1.0.0/errors/communication
 title: Service Not Available
 status: 503
 ```
@@ -2105,14 +2105,14 @@ Standard error types serve the purpose of categorizing errors consistently acros
 
 | Type | Status¹ | Description |
 |------|:-------:|-------------|
-| [https://serverlessworkflow.io/spec/1.0.0/errors/configuration](#) | `400` | Errors resulting from incorrect or invalid configuration settings, such as missing or misconfigured environment variables, incorrect parameter values, or configuration file errors. |
-| [https://serverlessworkflow.io/spec/1.0.0/errors/validation](#) | `400` | Errors arising from validation processes, such as validation of input data, schema validation failures, or validation constraints not being met. These errors indicate that the provided data or configuration does not adhere to the expected format or requirements specified by the workflow. |
-| [https://serverlessworkflow.io/spec/1.0.0/errors/expression](#) | `400` | Errors occurring during the evaluation of runtime expressions, such as invalid syntax or unsupported operations. |
-| [https://serverlessworkflow.io/spec/1.0.0/errors/authentication](#) | `401` | Errors related to authentication failures. |
-| [https://serverlessworkflow.io/spec/1.0.0/errors/authorization](#) | `403` | Errors related to unauthorized access attempts or insufficient permissions to perform certain actions within the workflow. |
-| [https://serverlessworkflow.io/spec/1.0.0/errors/timeout](#) | `408` | Errors caused by timeouts during the execution of tasks or during interactions with external services. |
-| [https://serverlessworkflow.io/spec/1.0.0/errors/communication](#) | `500` | Errors  encountered while communicating with external services, including network errors, service unavailable, or invalid responses. |
-| [https://serverlessworkflow.io/spec/1.0.0/errors/runtime](#) | `500` | Errors occurring during the runtime execution of a workflow, including unexpected exceptions, errors related to resource allocation, or failures in handling workflow tasks. These errors typically occur during the actual execution of workflow components and may require runtime-specific handling and resolution strategies. |
+| [https://open-workflow-specification.org/spec/1.0.0/errors/configuration](#) | `400` | Errors resulting from incorrect or invalid configuration settings, such as missing or misconfigured environment variables, incorrect parameter values, or configuration file errors. |
+| [https://open-workflow-specification.org/spec/1.0.0/errors/validation](#) | `400` | Errors arising from validation processes, such as validation of input data, schema validation failures, or validation constraints not being met. These errors indicate that the provided data or configuration does not adhere to the expected format or requirements specified by the workflow. |
+| [https://open-workflow-specification.org/spec/1.0.0/errors/expression](#) | `400` | Errors occurring during the evaluation of runtime expressions, such as invalid syntax or unsupported operations. |
+| [https://open-workflow-specification.org/spec/1.0.0/errors/authentication](#) | `401` | Errors related to authentication failures. |
+| [https://open-workflow-specification.org/spec/1.0.0/errors/authorization](#) | `403` | Errors related to unauthorized access attempts or insufficient permissions to perform certain actions within the workflow. |
+| [https://open-workflow-specification.org/spec/1.0.0/errors/timeout](#) | `408` | Errors caused by timeouts during the execution of tasks or during interactions with external services. |
+| [https://open-workflow-specification.org/spec/1.0.0/errors/communication](#) | `500` | Errors  encountered while communicating with external services, including network errors, service unavailable, or invalid responses. |
+| [https://open-workflow-specification.org/spec/1.0.0/errors/runtime](#) | `500` | Errors occurring during the runtime execution of a workflow, including unexpected exceptions, errors related to resource allocation, or failures in handling workflow tasks. These errors typically occur during the actual execution of workflow components and may require runtime-specific handling and resolution strategies. |
 
 ¹ *Default value. The `status code` that best describe the error should always be used.*
 
@@ -2474,7 +2474,7 @@ To substitute a variable within a URI, use the `{}` syntax. The identifier insid
 This has the following limitations compared to runtime expressions:
 
 - Only top-level properties can be interpolated within strings, thus identifiers are treated verbatim. This means that `{pet.id}` will be replaced with the value of the `"pet.id"` property, not the value of the `id` property of the `pet` property.
-- The referenced variable must be of type `string`, `number`, `boolean`, or `null`. If the variable is of a different type an error with type `https://https://serverlessworkflow.io/spec/1.0.0/errors/expression` and status `400` will be raised.
+- The referenced variable must be of type `string`, `number`, `boolean`, or `null`. If the variable is of a different type an error with type `https://open-workflow-specification.org/spec/1.0.0/errors/expression` and status `400` will be raised.
 - [Runtime expression arguments](./dsl.md#runtime-expression-arguments) are not available for string substitution.
 
 #### Examples
@@ -2767,7 +2767,7 @@ do:
                   emit:
                     event:
                       with:
-                        source: https://serverlessworkflow.io/samples
+                        source: https://open-workflow-specification.org/samples
                         type: io.serverlessworkflow.samples.asyncapi.message.consumed.v1
                         data:
                           message: '${ $message }'
