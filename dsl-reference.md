@@ -1450,7 +1450,7 @@ The data carried by the cloud event that notifies that a workflow ran to complet
 |:--|:---:|:---:|:---|
 | name | `string` | `yes` | The qualified name of the workflow ran to completion. |
 | completedAt | `dateTime` | `yes` | The date and time at which the workflow ran to completion. |
-| outputUri | `uri` | `no` | A URI pointing to the workflow's output data, if any. Implementations **should** use this [Claim Check](https://www.enterpriseintegrationpatterns.com/patterns/messaging/StoreInLibrary.html) approach instead of embedding the output directly, to avoid exceeding [CloudEvents size limits](https://github.com/cloudevents/spec/blob/main/cloudevents/spec.md#size-limits). |
+| outputUri | `uri` | `no` | A URI pointing to the workflow's output data, if any. This follows the [Claim Check](https://www.enterpriseintegrationpatterns.com/patterns/messaging/StoreInLibrary.html) pattern to avoid embedding potentially large outputs in the event and exceeding [CloudEvents size limits](https://github.com/cloudevents/spec/blob/main/cloudevents/spec.md#size-limits). |
 
 ###### Examples
 
