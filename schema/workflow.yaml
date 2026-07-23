@@ -700,10 +700,13 @@ $defs:
               oneOf:
                 - type: string
                   title: ForInExpression
+                  description: A runtime expression used to get the collection to enumerate.
                 - type: array
                   title: ForInInlineArray
+                  description: An inline array of objects to enumerate.
                   items:
                     type: object
+                    description: An item in the inline collection.
             at:
               type: string
               title: ForAt
