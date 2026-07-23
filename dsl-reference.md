@@ -1255,7 +1255,7 @@ Defines the configuration of a catch clause, which a concept used to catch error
 | exceptWhen | `string` | `no` | A runtime expression used to determine whether or not to catch the filtered error. |
 | retry | `string`<br>[`retryPolicy`](#retry) | `no` | The [`retry policy`](#retry) to use, if any, when catching [`errors`](#error).<br>*If a `string`, must be the name of a [retry policy](#retry) defined in the [workflow's reusable components](#use).* |
 | do | [`map[string, task]`](#task) | `no` | The definition of the task(s) to run when catching an error. |
-| then | [`flowDirective`](#flow-directive) | `no` | The [flow directive](#flow-directive) to execute after catching the error. |
+| then | [`flowDirective`](#flow-directive) | `no` | The [flow directive](#flow-directive) to execute for the error path after the error has been caught (and after executing any `do` tasks, if set). This determines the next transition for the catch path (overriding the try task’s normal completion flow). |
 
 #### Wait
 
