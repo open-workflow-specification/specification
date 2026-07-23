@@ -1445,7 +1445,7 @@ $defs:
         pattern: "^(?!\\s*\\$\\{)(?=\\S)(([^:/?#]+):)?(//([^/?#]*))?([^?#]*)(\\?([^#]*))?(#(.*))?$"
       - title: LiteralUri
         type: string
-        format: uri
+        format: uri-reference
         pattern: "^(?!\\s*\\$\\{)(?=\\S)(([^:/?#]+):)?(//([^/?#]*))?([^?#]*)(\\?([^#]*))?(#(.*))?$"
   endpoint:
     title: Endpoint

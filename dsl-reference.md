@@ -2469,7 +2469,7 @@ headers:
 
 The DSL has limited support for URI template syntax as defined by [RFC 6570](https://datatracker.ietf.org/doc/html/rfc6570). Specifically, only the [Simple String Expansion](https://datatracker.ietf.org/doc/html/rfc6570#section-3.2.2) is supported, which allows authors to embed variables in a URI.
 
-All URI and URI template types in the DSL conform to the [URI-reference](https://datatracker.ietf.org/doc/html/rfc3986#appendix-B) syntax defined by [RFC 3986](https://datatracker.ietf.org/doc/html/rfc3986), meaning both absolute URIs (e.g., `https://example.com/path`) and relative references (e.g., `openapi/petstore.json`, `/api/v1/users`) are accepted.
+All URI and URI template types in the DSL conform to the [URI-reference](https://datatracker.ietf.org/doc/html/rfc3986#section-4.1) syntax defined by [RFC 3986](https://datatracker.ietf.org/doc/html/rfc3986), meaning both absolute URIs (e.g., `https://example.com/path`) and relative references (e.g., `openapi/petstore.json`, `/api/v1/users`) are accepted.
 
 To substitute a variable within a URI, use the `{}` syntax. The identifier inside the curly braces will be replaced with its value during runtime evaluation. If no value is found for the identifier, an empty string will be used.
 
