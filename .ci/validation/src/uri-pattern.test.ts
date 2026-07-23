@@ -14,10 +14,12 @@
  * limitations under the License.
  */
 
-// RFC 3986 Appendix B URI-reference regex used in schema/workflow.yaml
-// for both LiteralUri and LiteralUriTemplate
+// Anchored RFC 3986 URI-reference regex used in schema/workflow.yaml
+// for both LiteralUri and LiteralUriTemplate.
+// Adds: $ end anchor, (?!\s*\$\{) to exclude runtime expressions,
+// (?=\S) to reject empty/whitespace-only strings.
 const URI_REFERENCE_PATTERN =
-  /^(([^:/?#]+):)?(\/\/([^/?#]*))?([^?#]*)(\?([^#]*))?(#(.*))?/;
+  /^(?!\s*\$\{)(?=\S)(([^:/?#]+):)?(\/\/([^/?#]*))?([^?#]*)(\?([^#]*))?(#(.*))?$/;
 
 describe("LiteralUri pattern (RFC 3986 URI-reference)", () => {
   const absoluteUris = [
@@ -115,4 +117,28 @@ describe("LiteralUriTemplate pattern (RFC 3986 URI-reference)", () => {
       expect(URI_REFERENCE_PATTERN.test(uri)).toBe(true);
     }
   );
+});
+
+describe("URI pattern rejects invalid or ambiguous values", () => {
+  const runtimeExpressions = [
+    "${ .foo }",
+    "  ${ .bar }  ",
+    "${.baz}",
+    "${ .context.endpoint }",
+  ];
+
+  test.each(runtimeExpressions)(
+    "rejects runtime expression: %s",
+    (expr) => {
+      expect(URI_REFERENCE_PATTERN.test(expr)).toBe(false);
+    }
+  );
+
+  test("rejects empty string", () => {
+    expect(URI_REFERENCE_PATTERN.test("")).toBe(false);
+  });
+
+  test("rejects whitespace-only string", () => {
+    expect(URI_REFERENCE_PATTERN.test("   ")).toBe(false);
+  });
 });
