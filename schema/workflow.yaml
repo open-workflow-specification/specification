@@ -695,9 +695,18 @@ $defs:
               description: The name of the variable used to store the current item being enumerated.
               default: item
             in:
-              type: string
               title: ForIn
-              description: A runtime expression used to get the collection to enumerate.
+              description: A runtime expression or an inline array used to get the collection to enumerate.
+              oneOf:
+                - type: string
+                  title: ForInExpression
+                  description: A runtime expression used to get the collection to enumerate.
+                - type: array
+                  title: ForInInlineArray
+                  description: An inline array of objects to enumerate.
+                  items:
+                    type: object
+                    description: An item in the inline collection.
             at:
               type: string
               title: ForAt

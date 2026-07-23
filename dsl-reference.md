@@ -688,7 +688,7 @@ Allows workflows to iterate over a collection of items, executing a defined set 
 | Name | Type | Required | Description|
 |:--|:---:|:---:|:---|
 | for.each | `string` | `no` | The name of the variable used to store the current item being enumerated.<br>Defaults to `item`. |
-| for.in | `string` | `yes` | A [runtime expression](dsl.md#runtime-expressions) used to get the collection to enumerate. |
+| for.in | `string` \| `array<object>` | `yes` | A [runtime expression](dsl.md#runtime-expressions) or an inline array of objects used to get the collection to enumerate. |
 | for.at | `string` | `no` | The name of the variable used to store the index of the current item being enumerated.<br>Defaults to `index`. |
 | while | `string` | `no` | A [runtime expression](dsl.md#runtime-expressions) that represents the condition, if any, that must be met for the iteration to continue. |
 | do | [`map[string, task]`](#task) | `yes` | The [task(s)](#task) to perform for each item in the collection. |
