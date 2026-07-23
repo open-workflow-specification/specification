@@ -186,7 +186,7 @@ To ensure they conform to the DSL, runtimes **should** pass all the feature conf
 
 Secrets are sensitive information required by a workflow to securely access protected resources or services. They provide a way to securely store and manage credentials, tokens, or other sensitive data used during workflow execution.
 
-Runtime **must** implement a mechanism capable of providing the workflow with the data contained within the defined secrets. If a workflow attempts to access a secret to which it does not have access rights or which does not exist, runtimes **must** raise an error with type `https://serverlessworkflow.io/spec/1.0.0/errors/authorization` and status `403`.
+Runtime **must** implement a mechanism capable of providing the workflow with the data contained within the defined secrets. If a workflow attempts to access a secret to which it does not have access rights or which does not exist, runtimes **must** raise an error with type `https://open-workflow-specification.org/spec/1.0.0/errors/authorization` and status `403`.
 
 #### Scheduling
 
@@ -238,7 +238,7 @@ Here's how data flows through a workflow based on various transformation stages:
 
 1. **Validate Workflow Input**
 Before the workflow starts, the input data provided to the workflow can be validated against the `input.schema` property to ensure it conforms to the expected structure.
-The execution only proceeds if the input is valid. Otherwise, it will fault with a [ValidationError (https://serverlessworkflow.io/spec/1.0.0/errors/validation)](dsl-reference.md#error).
+The execution only proceeds if the input is valid. Otherwise, it will fault with a [ValidationError (https://open-workflow-specification.org/spec/1.0.0/errors/validation)](dsl-reference.md#error).
 
 2. **Transform Workflow Input**
 Before the workflow starts, the input data provided to the workflow can be transformed to ensure only relevant data in the expected format is passed into the workflow context. This can be done using the top level `input.from` expression. It evaluates on the raw workflow input and defaults to the identity expression which leaves the input unchanged. This step allows the workflow to start with a clean and focused dataset, reducing potential overhead and complexity in subsequent tasks. The result of this expression will set as the initial value for the `$input` runtime expression argument and be passed to the first task.
@@ -249,7 +249,7 @@ After workflow input validation and transformation, the transformed input is pas
 
 3. **Validate Task Input**
 Before a task executes, its raw input can be validated against the `input.schema` property to ensure it conforms to the expected structure.
-The execution only proceeds if the input is valid. Otherwise, it will fault with a [ValidationError (https://serverlessworkflow.io/spec/1.0.0/errors/validation)](dsl-reference.md#error).
+The execution only proceeds if the input is valid. Otherwise, it will fault with a [ValidationError (https://open-workflow-specification.org/spec/1.0.0/errors/validation)](dsl-reference.md#error).
 
 4. **Transform Task Input**
 The input data for the task can be transformed to match the specific requirements of that task. This ensures that the task receives only the data required to perform its operations. This can be done using the task's `input.from` expression. It evaluates the raw task input (i.e., the transformed workflow input for the first task or the transformed output of the previous task) and defaults to the identity expression, which leaves the input unchanged. The result of this expression will be set as the `$input` runtime expression argument and be passed to the task. This transformed input will be evaluated against any runtime expressions used within the task definition.
@@ -262,13 +262,13 @@ After completing the task, its output can be transformed before passing it to th
 *Example: If the task returns a large dataset, a transformation can be applied to retain only the relevant results needed for subsequent tasks.*
 
 6. **Validate Task Output**
-After `output.as` is evaluated, the transformed task output is validated against the `output.schema` property to ensure it conforms to the expected structure. The execution only proceeds if the output is valid. Otherwise, it will fault with a [ValidationError (https://serverlessworkflow.io/spec/1.0.0/errors/validation)](dsl-reference.md#error).
+After `output.as` is evaluated, the transformed task output is validated against the `output.schema` property to ensure it conforms to the expected structure. The execution only proceeds if the output is valid. Otherwise, it will fault with a [ValidationError (https://open-workflow-specification.org/spec/1.0.0/errors/validation)](dsl-reference.md#error).
 
 7. **Update Workflow Context**
 To update the context, one uses the `export.as` runtime expression. It evaluates the transformed task output and defaults to the expression that returns the existing context. The result of this runtime expression replaces the workflow's current context and the content of the `$context` runtime expression argument. This helps manage the data flow and keep the context clean by removing any unnecessary data produced by the task.
 
 8. **Validate Exported Context**
-After the context is updated, the exported context is validated against the `export.schema` property to ensure it conforms to the expected structure. The execution only proceeds if the exported context is valid. Otherwise, it will fault with a [ValidationError (https://serverlessworkflow.io/spec/1.0.0/errors/validation)](dsl-reference.md#error).
+After the context is updated, the exported context is validated against the `export.schema` property to ensure it conforms to the expected structure. The execution only proceeds if the exported context is valid. Otherwise, it will fault with a [ValidationError (https://open-workflow-specification.org/spec/1.0.0/errors/validation)](dsl-reference.md#error).
 
 9. **Continue Workflow**
 After the context is updated, the workflow continues to the next task in the sequence. The transformed output of the previous task is passed as the raw input to the next task, and the data flow cycle repeats.
@@ -280,7 +280,7 @@ Finally, the overall workflow output can be transformed before it is returned to
 *Example: If the workflow's final output is a summary report, a transformation can ensure that the report contains only the most important summaries and conclusions, excluding any intermediate data.*
 
 11. **Validate Workflow Output**
-After `output.as` is evaluated, the transformed workflow output is validated against the `output.schema` property to ensure it conforms to the expected structure. The execution only proceeds if the output is valid. Otherwise, it will fault with a [ValidationError (https://serverlessworkflow.io/spec/1.0.0/errors/validation)](dsl-reference.md#error).
+After `output.as` is evaluated, the transformed workflow output is validated against the `output.schema` property to ensure it conforms to the expected structure. The execution only proceeds if the output is valid. Otherwise, it will fault with a [ValidationError (https://open-workflow-specification.org/spec/1.0.0/errors/validation)](dsl-reference.md#error).
 
 By applying transformations at these strategic points, Open Workflow DSL ensures that data flows through the workflow in a controlled and efficient manner, maintaining clarity and relevance at each execution stage. This approach helps manage complex workflows and ensures that each task operates with the precise data required, leading to more predictable and reliable workflow outcomes.
 
@@ -380,7 +380,7 @@ Runtimes **may** optionally support other runtime expression languages, which au
 
 CloudFlows defines [several arguments](#runtime-expression-arguments) that runtimes **must** provide during the evaluation of runtime expressions.
 
-When the evaluation of an expression fails, runtimes **must** raise an error with type `https://serverlessworkflow.io/spec/1.0.0/errors/expression` and status `400`.
+When the evaluation of an expression fails, runtimes **must** raise an error with type `https://open-workflow-specification.org/spec/1.0.0/errors/expression` and status `400`.
 
 #### Runtime expression arguments
 
@@ -470,7 +470,7 @@ Errors in Open Workflow Specification are described using the [Problem Details R
 
 *Example error:*
 ```yaml
-type: https://serverlessworkflow.io/spec/1.0.0/errors/communication
+type: https://open-workflow-specification.org/spec/1.0.0/errors/communication
 title: Service Unavailable
 status: 503
 detail: The service is currently unavailable. Please try again later.
@@ -513,7 +513,7 @@ Workflows and tasks alike can be configured to timeout after a defined amount of
 
 When a timeout occur, runtimes **must** abruptly interrupt the execution of the workflow/task, and **must** raise an error that, if uncaught, force the workflow/task to transition to the [`faulted` status phase](#status-phases).
 
-A timeout error **must** have its `type` set to `https://serverlessworkflow.io/spec/1.0.0/errors/timeout` and **should** have its `status` set to `408`.
+A timeout error **must** have its `type` set to `https://open-workflow-specification.org/spec/1.0.0/errors/timeout` and **should** have its `status` set to `408`.
 
 ### Catalogs
 
@@ -598,7 +598,7 @@ Open Workflow DSL is designed to seamlessly interact with a variety of services,
 - [**OpenAPI**](dsl-reference.md#openapi-call): Enables communication with services that provide OpenAPI specifications, which is useful for defining and consuming RESTful APIs.
 - [**A2A**](dsl-reference.md#a2a-call): Enables interaction with A2A servers (agents described by A2A).
 
-Runtimes **must** raise an error with type `https://serverlessworkflow.io/spec/1.0.0/errors/communication` if and when a problem occurs during a call.
+Runtimes **must** raise an error with type `https://open-workflow-specification.org/spec/1.0.0/errors/communication` if and when a problem occurs during a call.
 
 #### Custom and Non-Standard Interactions
 

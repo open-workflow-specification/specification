@@ -27,7 +27,7 @@ Feature: Try Task
           catch:
             errors:
               with:
-                type: https://serverlessworkflow.io/dsl/errors/types/communication
+                type: https://open-workflow-specification.org/dsl/errors/types/communication
                 status: 404
             as: err
             do:
@@ -71,7 +71,7 @@ Feature: Try Task
           catch:
             errors:
               with:
-                type: https://serverlessworkflow.io/dsl/errors/types/communication
+                type: https://open-workflow-specification.org/dsl/errors/types/communication
                 status: 503
             as: err
             do:

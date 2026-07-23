@@ -92,7 +92,7 @@ do:
             emit:
               event:
                 with:
-                  source: https://serverlessworkflow.io
+                  source: https://open-workflow-specification.org
                   type: com.github.events.issues.assignedToDevTeam.v1
                   data:
                     issue: ${ .issue }
@@ -129,7 +129,7 @@ do:
             emit:
               event:
                 with:
-                  source: https://serverlessworkflow.io
+                  source: https://open-workflow-specification.org
                   type: com.github.events.issues.assignedToQATeam.v1
                   data:
                     issue: ${ $context.issue }
@@ -154,7 +154,7 @@ do:
             emit:
               event:
                 with:
-                  source: https://serverlessworkflow.io
+                  source: https://open-workflow-specification.org
                   type: com.github.events.issues.pendingReview.v1
                   data:
                     issue: ${ $context.issue }
@@ -188,7 +188,7 @@ do:
             emit:
               event:
                 with:
-                  source: https://serverlessworkflow.io
+                  source: https://open-workflow-specification.org
                   type: com.github.events.issues.evaluateReview.v1
                   data:
                     issue: ${ $context.issue }
@@ -230,7 +230,7 @@ do:
                   emit:
                     event:
                       with:
-                        source: https://serverlessworkflow.io
+                        source: https://open-workflow-specification.org
                         type: com.github.events.issues.closed.v1
                         data:
                           issue: ${ $context.issue }
@@ -240,7 +240,7 @@ do:
   - raiseUnsupportedActionError:
       raise:
         error:
-          type: https://serverlessworkflow.io/spec/1.0.0/errors/runtime
+          type: https://open-workflow-specification.org/spec/1.0.0/errors/runtime
           status: 400
           title: Unsupported Action
           detail: The specified action is not supported in this context
@@ -249,7 +249,7 @@ do:
   - raiseAssignedDevCannotBeReviewer:
       raise:
         error:
-          type: https://serverlessworkflow.io/spec/1.0.0/errors/runtime
+          type: https://open-workflow-specification.org/spec/1.0.0/errors/runtime
           status: 400
           title: Invalid Reviewer
           detail: The developer that has performed the work associated with the issue cannot be the reviewer of its own work

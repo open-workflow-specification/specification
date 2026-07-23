@@ -21,7 +21,7 @@ do:
                   emit:
                     event:
                       with:
-                        source: https://serverlessworkflow.io/samples
+                        source: https://open-workflow-specification.org/samples
                         type: io.serverlessworkflow.samples.asyncapi.message.consumed.v1
                         data:
                           message: '${ $message }'
