@@ -1638,7 +1638,7 @@ The data carried by the cloud event that notifies that a task ran to completion.
 | workflow | `string` | `yes` | The qualified name of the workflow the task that ran to completion belongs to. |
 | task | `uri` | `yes` | A JSON Pointer that references the task that ran to completion. |
 | completedAt | `dateTime` | `yes` | The date and time at which the task ran to completion. |
-| outputUri | `uri` | `no` | A URI pointing to the task's output data, if any. Implementations **should** use this [Claim Check](https://www.enterpriseintegrationpatterns.com/patterns/messaging/StoreInLibrary.html) approach instead of embedding the output directly, to avoid exceeding [CloudEvents size limits](https://github.com/cloudevents/spec/blob/main/cloudevents/spec.md#size-limits). |
+| outputUri | `uri` | `no` | A URI pointing to the task's output data, if any. This follows the [Claim Check](https://www.enterpriseintegrationpatterns.com/patterns/messaging/StoreInLibrary.html) pattern to avoid embedding large payloads in the event; events larger than 64 KiB are not guaranteed to be forwarded by intermediaries per the [CloudEvents size limits](https://github.com/cloudevents/spec/blob/main/cloudevents/spec.md#size-limits). |
 
 ###### Examples
 
