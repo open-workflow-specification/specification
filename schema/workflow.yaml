@@ -671,7 +671,7 @@ $defs:
                   $ref: '#/$defs/eventProperties'
                   title: EmitEventWith
                   description: Defines the properties of event to emit.
-                  required: [ source, type ]
+                  required: [ type ]
               additionalProperties: true
           required: [ event ]
   forTask:
