@@ -1483,7 +1483,7 @@ $defs:
         description: The event's unique identifier.
       source:
         title: EventSource
-        description: Identifies the context in which an event happened. If not explicitly provided, runtime implementations generate it at emission time (e.g., from the workflow identity).
+        description: Identifies the context in which an event happened. If not explicitly provided, runtime implementations generate it at emission time (e.g., from the workflow identity). If explicitly provided by the workflow author, the supplied value takes precedence.
         oneOf:
           - $ref: '#/$defs/uriTemplate'
           - $ref: '#/$defs/runtimeExpression'
