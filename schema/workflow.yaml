@@ -671,7 +671,7 @@ $defs:
                   $ref: '#/$defs/eventProperties'
                   title: EmitEventWith
                   description: Defines the properties of event to emit.
-                  required: [ source, type ]
+                  required: [ type ]
               additionalProperties: true
           required: [ event ]
   forTask:
@@ -1063,6 +1063,10 @@ $defs:
               $ref: '#/$defs/taskList'
               title: TryTaskCatchDo
               description: The definition of the task(s) to run when catching an error.
+            then:
+              $ref: '#/$defs/flowDirective'
+              title: TryTaskCatchThen
+              description: The flow directive to execute for the error path after the error has been caught (and after executing any `do` tasks, if set). When set, this determines the next transition instead of the try task's top-level `then` or the default sequential flow.
   waitTask:
     type: object
     title: WaitTask
@@ -1492,7 +1496,7 @@ $defs:
         description: The event's unique identifier.
       source:
         title: EventSource
-        description: Identifies the context in which an event happened.
+        description: Identifies the context in which an event happened. If not explicitly provided, runtime implementations generate it at emission time (e.g., from the workflow identity). If explicitly provided by the workflow author, the supplied value takes precedence.
         oneOf:
           - $ref: '#/$defs/uriTemplate'
           - $ref: '#/$defs/runtimeExpression'
