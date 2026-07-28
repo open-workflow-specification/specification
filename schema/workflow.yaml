@@ -1455,11 +1455,11 @@ $defs:
       - title: LiteralUriTemplate
         type: string
         format: uri-template
-        pattern: "^(?!\\s*\\$\\{)(?=\\S)(([^:/?#]+):)?(//([^/?#]*))?([^?#]*)(\\?([^#]*))?(#(.*))?$"
+        pattern: "^(?!\\s*\\$\\{)(?=\\S)(([^:/?#]+):)?(//([^/?#\\s]*))?([^?#\\s]*)(\\?([^#\\s]*))?(#(\\S*))?$"
       - title: LiteralUri
         type: string
         format: uri-reference
-        pattern: "^(?!\\s*\\$\\{)(?=\\S)(([^:/?#]+):)?(//([^/?#]*))?([^?#]*)(\\?([^#]*))?(#(.*))?$"
+        pattern: "^(?!\\s*\\$\\{)(?=\\S)(([^:/?#]+):)?(//([^/?#\\s]*))?([^?#\\s]*)(\\?([^#\\s]*))?(#(\\S*))?$"
   endpoint:
     title: Endpoint
     description: Represents an endpoint.

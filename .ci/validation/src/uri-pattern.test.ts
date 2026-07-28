@@ -160,4 +160,22 @@ describe("URI pattern rejects invalid or ambiguous values", () => {
   test("rejects whitespace-only string", () => {
     expect(LITERAL_URI_PATTERN.test("   ")).toBe(false);
   });
+
+  const urisWithWhitespace = [
+    "http://example.com/path with spaces",
+    "openapi/pet store.json",
+    "/api/v1/my resource",
+    "https://example.com/path?query=has space",
+    "https://example.com/path#frag ment",
+    "proto/greeter .proto",
+    "//example.com/some path",
+  ];
+
+  test.each(urisWithWhitespace)(
+    "rejects URI containing whitespace: %s",
+    (uri) => {
+      expect(LITERAL_URI_PATTERN.test(uri)).toBe(false);
+      expect(LITERAL_URI_TEMPLATE_PATTERN.test(uri)).toBe(false);
+    }
+  );
 });
