@@ -16,14 +16,14 @@ Feature: Raise Task
           raise:
             error:
               status: 400
-              type: https://serverlessworkflow.io/errors/types/compliance
+              type: https://open-workflow-specification.org/errors/types/compliance
               title: Compliance Error
     """
     When the workflow is executed
     Then the workflow should fault with error:
     """yaml
     status: 400
-    type: https://serverlessworkflow.io/errors/types/compliance
+    type: https://open-workflow-specification.org/errors/types/compliance
     title: Compliance Error
     instance: /do/0/raiseError
     """
