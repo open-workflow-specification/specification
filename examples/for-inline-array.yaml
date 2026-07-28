@@ -1,0 +1,20 @@
+document:
+  dsl: '1.0.3'
+  namespace: test
+  name: for-inline-array-example
+  version: '0.1.0'
+do:
+  - logColors:
+      for:
+        each: color
+        in:
+          - name: red
+            hex: '#FF0000'
+          - name: green
+            hex: '#00FF00'
+          - name: blue
+            hex: '#0000FF'
+      do:
+        - setProcessed:
+            set:
+              processed: '${ .processed + [$color] }'
