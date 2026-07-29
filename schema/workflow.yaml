@@ -158,6 +158,8 @@ properties:
         default: data
         title: ScheduleOnReadAs
         description: Specifies how consumed events are read when the workflow is triggered by events. Supported values are 'data' (reads the event's data), 'envelope' (reads the event's envelope, including context attributes), and 'raw' (reads the event's raw data). Defaults to 'data'.
+    dependentRequired:
+      read: [ on ]
   evaluate:
     type: object
     title: Evaluate
