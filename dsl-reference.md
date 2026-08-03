@@ -589,7 +589,7 @@ Serves as a fundamental building block within workflows, enabling the sequential
 
 | Name | Type | Required | Description|
 |:--|:---:|:---:|:---|
-| do | [`map[string, task]`](#task) | `no` | The tasks to perform sequentially. |
+| do | [`map[string, task]`](#task) | `yes` | The tasks to perform sequentially. |
 
 ##### Examples
 
