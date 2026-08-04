@@ -15,7 +15,7 @@ do:
           command: python3 /path/to/greet.py
           stdin: ${ . }
           arguments:
-          - --greeting
-          - Hello
+            - --greeting
+            - Hello
           environment:
             LOG_LEVEL: info
