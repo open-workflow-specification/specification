@@ -981,8 +981,7 @@ Enables the execution of custom scripts or code within a workflow, empowering wo
 | language | `string` | `yes` | The language of the script to run.<br>*Supported values are: [`js`](https://tc39.es/ecma262/2024/) and [`python`](https://www.python.org/downloads/release/python-3131/).* |
 | code | `string` | `no` | The script's code.<br>*Required if `source` has not been set.* |
 | source | [externalResource](#external-resource) | `no` | The script's resource.<br>*Required if `code` has not been set.* |
-| stdin | `string` | `no` | A runtime expression, if any, to the script as standard input (stdin).|
-| arguments | `string[]` | `no` | A list of the arguments, if any, to the script as argv |
+| arguments | `map` | `no` | A key/value mapping of the arguments, if any, to use when running the configured script |
 | environment | `map` | `no` | A key/value mapping of the environment variables, if any, to use when running the configured script process |
 
 
@@ -999,21 +998,22 @@ Enables the execution of custom scripts or code within a workflow, empowering wo
 
 ```yaml
 document:
-  dsl: 1.0.3
+  dsl: '1.0.3'
   namespace: examples
-  name: run-script-example
+  name: run-script-with-arguments
   version: 1.0.0
 do:
-  - runScript:
+  - setInput:
+      set:
+        message: Hello World
+  - log:
       run:
         script:
           language: js
           arguments:
-          - hello
-          - world
-          code: |
-            const [_, __, arg0, arg1] = process.argv;
-            console.log('arg > ', arg0, arg1)
+            message: ${ .message }
+          code: >
+            console.log(message)
 ```
 
 ##### Shell Process
@@ -1026,7 +1026,7 @@ Enables the execution of shell commands within a workflow, enabling workflows to
 |:--|:---:|:---:|:---|
 | command | `string` | `yes` | The shell command to run |
 | stdin | `string` | `no` | A runtime expression, if any, to the shell command as standard input (stdin).|
-| arguments | `string[]` | `no` | A list of the arguments, if any, to the shell command as argv |
+| arguments | `string[]` | `no` | A list of the arguments, if any, of the shell command to run |
 | environment | `map` | `no` | A key/value mapping of the environment variables, if any, to use when running the configured process |
 
 ###### Examples

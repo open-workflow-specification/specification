@@ -1,0 +1,21 @@
+document:
+  dsl: '1.0.3'
+  namespace: examples
+  name: run-shell-external-script
+  version: 1.0.0
+do:
+  - setInput:
+      set:
+        name: World
+  - greet:
+      input:
+        from: ${ .name }
+      run:
+        shell:
+          command: python3 /path/to/greet.py
+          stdin: ${ . }
+          arguments:
+          - --greeting
+          - Hello
+          environment:
+            LOG_LEVEL: info

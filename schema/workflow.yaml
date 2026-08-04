@@ -877,16 +877,11 @@ $defs:
                       type: string
                       title: ScriptLanguage
                       description: The language of the script to run.
-                    stdin:
-                      type: string
-                      title: ScriptStdin
-                      description: A runtime expression, if any, to the script as standard input (stdin).
                     arguments:
-                      type: array
+                      type: object
                       title: ScriptArguments
-                      description: A list of the arguments, if any, to the script as argv
-                      items:
-                        type: string
+                      description: A key/value mapping of the arguments, if any, to use when running the configured script.
+                      additionalProperties: true
                     environment:
                       type: object
                       title: ScriptEnvironment
@@ -931,7 +926,7 @@ $defs:
                     arguments:
                       type: array
                       title: ShellArguments
-                      description: A list of the arguments, if any, to the shell command as argv
+                      description: A list of the arguments, if any, of the shell command to run.
                       items:
                         type: string
                     environment:
