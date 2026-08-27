@@ -14,7 +14,7 @@ do:
       catch:
         errors:
           with:
-            type: https://serverlessworkflow.io/dsl/errors/types/communication
+            type: https://open-workflow-specification.org/dsl/errors/types/communication
             status: 503
         then: recordFailure
   - continueProcessing:

@@ -100,7 +100,7 @@ Both workflows and tasks in the Open Workflow DSL can exist in several phases, e
 | --- | --- |
 | `pending` |	The workflow/task has been initiated and is pending execution. |
 | `running` |	The workflow/task is currently in progress. |
-| `waiting` |	The workflow/task execution is temporarily paused, awaiting either inbound event(s) or a specified time interval as defined by a [`wait`](https://github.com/serverlessworkflow/specification/blob/main/dsl-reference.md#wait) task. |
+| `waiting` |	The workflow/task execution is temporarily paused, awaiting either inbound event(s) or a specified time interval as defined by a [`wait`](https://github.com/open-workflow-specification/specification/blob/main/dsl-reference.md#wait) task. |
 | `suspended` |	The workflow/task execution has been manually paused by a user and will remain halted until explicitly resumed. |
 | `cancelled` |	The workflow/task execution has been terminated before completion. |
 | `faulted` |	The workflow/task execution has encountered an error. |
@@ -120,35 +120,35 @@ Runtimes are expected to publish these events upon state changes. While using th
 
 | Type | Data | Required | Description |
 |:----:|:----:|:--------:|:------------|
-| <pre>`io.serverlessworkflow.workflow.started.v1`</pre> | [`workflowStartedEvent`](https://github.com/serverlessworkflow/specification/blob/main/dsl-reference.md#workflow-started-event) | `yes` | Notifies about the start of a workflow. |
-| <pre>`io.serverlessworkflow.workflow.suspended.v1`</pre> | [`workflowSupsendedEvent`](https://github.com/serverlessworkflow/specification/blob/main/dsl-reference.md#workflow-suspended-event) | `yes` | Notifies about suspending a workflow execution. |
-| <pre>`io.serverlessworkflow.workflow.resumed.v1`</pre> | [`workflowResumedEvent`](https://github.com/serverlessworkflow/specification/blob/main/dsl-reference.md#workflow-resumed-event) | `yes` | Notifies about resuming a workflow execution. |
-| <pre>`io.serverlessworkflow.workflow.correlation-started.v1`</pre> | [`workflowCorrelationStartedEvent`](https://github.com/serverlessworkflow/specification/blob/main/dsl-reference.md#workflow-correlation-started-event) | `yes` | Notifies about a workflow starting to correlate events. |
-| <pre>`io.serverlessworkflow.workflow.correlation-completed.v1`</pre> | [`workflowCorrelationCompletedEvent`](https://github.com/serverlessworkflow/specification/blob/main/dsl-reference.md#workflow-correlation-completed-event) | `yes` | Notifies about a workflow completing an event correlation. |
-| <pre>`io.serverlessworkflow.workflow.cancelled.v1`</pre> | [`workflowCancelledEvent`](https://github.com/serverlessworkflow/specification/blob/main/dsl-reference.md#workflow-cancelled-event) | `yes` | Notifies about the cancellation of a workflow execution. |
-| <pre>`io.serverlessworkflow.workflow.faulted.v1`</pre> | [`workflowFaultedEvent`](https://github.com/serverlessworkflow/specification/blob/main/dsl-reference.md#workflow-faulted-event) | `yes` | Notifies about a workflow being faulted. |
-| <pre>`io.serverlessworkflow.workflow.completed.v1`</pre> | [`workflowCompletedEvent`](https://github.com/serverlessworkflow/specification/blob/main/dsl-reference.md#workflow-completed-event) | `yes` |Notifies about the completion of a workflow execution. |
-| <pre>`io.serverlessworkflow.workflow.status-changed.v1`</pre> | [`workflowStatusChangedEvent`](https://github.com/serverlessworkflow/specification/blob/main/dsl-reference.md#workflow-status-changed-event) | `no` |Notifies about the change of a workflow's status phase. |
+| <pre>`io.open-workflow-specification.workflow.started.v1`</pre> | [`workflowStartedEvent`](https://github.com/open-workflow-specification/specification/blob/main/dsl-reference.md#workflow-started-event) | `yes` | Notifies about the start of a workflow. |
+| <pre>`io.open-workflow-specification.workflow.suspended.v1`</pre> | [`workflowSupsendedEvent`](https://github.com/open-workflow-specification/specification/blob/main/dsl-reference.md#workflow-suspended-event) | `yes` | Notifies about suspending a workflow execution. |
+| <pre>`io.open-workflow-specification.workflow.resumed.v1`</pre> | [`workflowResumedEvent`](https://github.com/open-workflow-specification/specification/blob/main/dsl-reference.md#workflow-resumed-event) | `yes` | Notifies about resuming a workflow execution. |
+| <pre>`io.open-workflow-specification.workflow.correlation-started.v1`</pre> | [`workflowCorrelationStartedEvent`](https://github.com/open-workflow-specification/specification/blob/main/dsl-reference.md#workflow-correlation-started-event) | `yes` | Notifies about a workflow starting to correlate events. |
+| <pre>`io.open-workflow-specification.workflow.correlation-completed.v1`</pre> | [`workflowCorrelationCompletedEvent`](https://github.com/open-workflow-specification/specification/blob/main/dsl-reference.md#workflow-correlation-completed-event) | `yes` | Notifies about a workflow completing an event correlation. |
+| <pre>`io.open-workflow-specification.workflow.cancelled.v1`</pre> | [`workflowCancelledEvent`](https://github.com/open-workflow-specification/specification/blob/main/dsl-reference.md#workflow-cancelled-event) | `yes` | Notifies about the cancellation of a workflow execution. |
+| <pre>`io.open-workflow-specification.workflow.faulted.v1`</pre> | [`workflowFaultedEvent`](https://github.com/open-workflow-specification/specification/blob/main/dsl-reference.md#workflow-faulted-event) | `yes` | Notifies about a workflow being faulted. |
+| <pre>`io.open-workflow-specification.workflow.completed.v1`</pre> | [`workflowCompletedEvent`](https://github.com/open-workflow-specification/specification/blob/main/dsl-reference.md#workflow-completed-event) | `yes` |Notifies about the completion of a workflow execution. |
+| <pre>`io.open-workflow-specification.workflow.status-changed.v1`</pre> | [`workflowStatusChangedEvent`](https://github.com/open-workflow-specification/specification/blob/main/dsl-reference.md#workflow-status-changed-event) | `no` |Notifies about the change of a workflow's status phase. |
 
 > [!NOTE]  
-> The `io.serverlessworkflow.workflow.status-changed.v1` event is an optional convenience event that notifies consumers solely about a workflow’s status changes, without carrying extra data. It is typically used by consumers who only need to track or report status updates (and not details like faults or outputs). Its use is optional because it requires runtimes to publish an additional event for each necessary lifecycle change.
+> The `io.open-workflow-specification.workflow.status-changed.v1` event is an optional convenience event that notifies consumers solely about a workflow’s status changes, without carrying extra data. It is typically used by consumers who only need to track or report status updates (and not details like faults or outputs). Its use is optional because it requires runtimes to publish an additional event for each necessary lifecycle change.
 
 ##### Task Lifecycle Events
 
 | Type | Data | Required | Description |
 |:----:|:----:|:--------:|:------------|
-| <pre>`io.serverlessworkflow.task.created.v1`</pre> | [`taskCreatedEvent`](https://github.com/serverlessworkflow/specification/blob/main/dsl-reference.md#task-created-event) | `yes` | Notifies about the creation of a task. |
-| <pre>`io.serverlessworkflow.task.started.v1`</pre> | [`taskStartedEvent`](https://github.com/serverlessworkflow/specification/blob/main/dsl-reference.md#task-started-event) | `yes` | Notifies about the start of a task. |
-| <pre>`io.serverlessworkflow.task.suspended.v1`</pre> | [`taskSuspendedEvent`](https://github.com/serverlessworkflow/specification/blob/main/dsl-reference.md#task-suspended-event) | `yes` | Notifies about suspending a task's execution. |
-| <pre>`io.serverlessworkflow.task.resumed.v1`</pre> | [`taskResumedEvent`](https://github.com/serverlessworkflow/specification/blob/main/dsl-reference.md#task-resumed-event) | `yes` | Notifies about resuming a task's execution. |
-| <pre>`io.serverlessworkflow.task.retried.v1`</pre> | [`taskRetriedEvent`](https://github.com/serverlessworkflow/specification/blob/main/dsl-reference.md#task-retried-event) | `yes` | Notifies about retrying a task's execution. |
-| <pre>`io.serverlessworkflow.task.cancelled.v1`</pre> | [`taskCancelledEvent`](https://github.com/serverlessworkflow/specification/blob/main/dsl-reference.md#task-cancelled-event) | `yes` | Notifies about the cancellation of a task's execution. |
-| <pre>`io.serverlessworkflow.task.faulted.v1`</pre> | [`taskFaultedEvent`](https://github.com/serverlessworkflow/specification/blob/main/dsl-reference.md#task-faulted-event) | `yes` | Notifies about a task being faulted. |
-| <pre>`io.serverlessworkflow.task.completed.v1`</pre> | [`taskCompletedEvent`](https://github.com/serverlessworkflow/specification/blob/main/dsl-reference.md#task-completed-event) | `yes` | Notifies about the completion of a task's execution. |
-| <pre>`io.serverlessworkflow.task.status-changed.v1`</pre> | [`taskStatusChangedEvent`](https://github.com/serverlessworkflow/specification/blob/main/dsl-reference.md#task-status-changed-event) | `no` | Notifies about the change of a task's status phase. |
+| <pre>`io.open-workflow-specification.task.created.v1`</pre> | [`taskCreatedEvent`](https://github.com/open-workflow-specification/specification/blob/main/dsl-reference.md#task-created-event) | `yes` | Notifies about the creation of a task. |
+| <pre>`io.open-workflow-specification.task.started.v1`</pre> | [`taskStartedEvent`](https://github.com/open-workflow-specification/specification/blob/main/dsl-reference.md#task-started-event) | `yes` | Notifies about the start of a task. |
+| <pre>`io.open-workflow-specification.task.suspended.v1`</pre> | [`taskSuspendedEvent`](https://github.com/open-workflow-specification/specification/blob/main/dsl-reference.md#task-suspended-event) | `yes` | Notifies about suspending a task's execution. |
+| <pre>`io.open-workflow-specification.task.resumed.v1`</pre> | [`taskResumedEvent`](https://github.com/open-workflow-specification/specification/blob/main/dsl-reference.md#task-resumed-event) | `yes` | Notifies about resuming a task's execution. |
+| <pre>`io.open-workflow-specification.task.retried.v1`</pre> | [`taskRetriedEvent`](https://github.com/open-workflow-specification/specification/blob/main/dsl-reference.md#task-retried-event) | `yes` | Notifies about retrying a task's execution. |
+| <pre>`io.open-workflow-specification.task.cancelled.v1`</pre> | [`taskCancelledEvent`](https://github.com/open-workflow-specification/specification/blob/main/dsl-reference.md#task-cancelled-event) | `yes` | Notifies about the cancellation of a task's execution. |
+| <pre>`io.open-workflow-specification.task.faulted.v1`</pre> | [`taskFaultedEvent`](https://github.com/open-workflow-specification/specification/blob/main/dsl-reference.md#task-faulted-event) | `yes` | Notifies about a task being faulted. |
+| <pre>`io.open-workflow-specification.task.completed.v1`</pre> | [`taskCompletedEvent`](https://github.com/open-workflow-specification/specification/blob/main/dsl-reference.md#task-completed-event) | `yes` | Notifies about the completion of a task's execution. |
+| <pre>`io.open-workflow-specification.task.status-changed.v1`</pre> | [`taskStatusChangedEvent`](https://github.com/open-workflow-specification/specification/blob/main/dsl-reference.md#task-status-changed-event) | `no` | Notifies about the change of a task's status phase. |
 
 > [!NOTE]  
-> The `io.serverlessworkflow.task.status-changed.v1` event is an optional convenience event that notifies consumers solely about a task's status changes, without carrying extra data. It is typically used by consumers who only need to track or report status updates (and not details like faults or outputs). Its use is optional because it requires runtimes to publish an additional event for each necessary lifecycle change.
+> The `io.open-workflow-specification.task.status-changed.v1` event is an optional convenience event that notifies consumers solely about a task's status changes, without carrying extra data. It is typically used by consumers who only need to track or report status updates (and not details like faults or outputs). Its use is optional because it requires runtimes to publish an additional event for each necessary lifecycle change.
 
 #### Components
 
@@ -526,18 +526,18 @@ Each catalog is defined by an `endpoint` property that specifies the root URL wh
 
 #### File Structure
 
-To ensure portability and standardization, catalogs must follow a specific file structure, which is documented [here](https://github.com/serverlessworkflow/catalog?tab=readme-ov-file#structure). This file structure ensures that runtimes can correctly interpret and resolve the resources contained within a catalog.
+To ensure portability and standardization, catalogs must follow a specific file structure, which is documented [here](https://github.com/open-workflow-specification/catalog?tab=readme-ov-file#structure). This file structure ensures that runtimes can correctly interpret and resolve the resources contained within a catalog.
 
-If a catalog is hosted in a GitHub or GitLab repository, runtimes are expected to resolve the **raw** machine-readable documents that define the cataloged resources. For example, for the function `log:1.0.0` located in a catalog at `https://github.com/serverlessworkflow/catalog/tree/main`, the function definition URI:
+If a catalog is hosted in a GitHub or GitLab repository, runtimes are expected to resolve the **raw** machine-readable documents that define the cataloged resources. For example, for the function `log:1.0.0` located in a catalog at `https://github.com/open-workflow-specification/catalog/tree/main`, the function definition URI:
 
 ```
-https://github.com/serverlessworkflow/catalog/tree/main/functions/log/1.0.0/function.yaml
+https://github.com/open-workflow-specification/catalog/tree/main/functions/log/1.0.0/function.yaml
 ```
 
 Should be transformed by the runtime to point to the raw content of the document:
 
 ```
-https://raw.githubusercontent.com/serverlessworkflow/catalog/refs/heads/main/functions/log/1.0.0/function.yaml
+https://raw.githubusercontent.com/open-workflow-specification/catalog/refs/heads/main/functions/log/1.0.0/function.yaml
 ```
 
 This transformation ensures that runtimes can retrieve and process the actual content of the resource definitions in a machine-readable format. It also ensures that authors can use the standard, user-friendly URIs of such Git repositories, making it easier to reference and manage resources without needing to directly use the raw content links.
@@ -577,7 +577,7 @@ use:
   catalogs:
     global:
       endpoint:
-        uri: https://github.com/serverlessworkflow/catalog
+        uri: https://github.com/open-workflow-specification/catalog
         authentication:
           basic:
             username: user
@@ -658,9 +658,9 @@ run:
 
 4. Commit and push your function to your repository.
 
-5. Optionally, submit your function to the [Open Workflow Catalog](https://github.com/serverlessworkflow/catalog), allowing users to find your function.
+5. Optionally, submit your function to the [Open Workflow Catalog](https://github.com/open-workflow-specification/catalog), allowing users to find your function.
 
-For more information about authoring a new custom function, visit the [Open Workflow Catalog](https://github.com/serverlessworkflow/catalog).
+For more information about authoring a new custom function, visit the [Open Workflow Catalog](https://github.com/open-workflow-specification/catalog).
 
 ##### Using a Custom Function
 
@@ -684,11 +684,11 @@ do:
 
 ##### Publishing a Custom Function
 
-Consider submitting your function to the [Open Workflow Function Catalog](https://github.com/serverlessworkflow/catalog). 
+Consider submitting your function to the [Open Workflow Function Catalog](https://github.com/open-workflow-specification/catalog). 
 
 This optional step allows users to discover and utilize your function, enhancing its visibility and usability within the Open Workflow Specification community. By registering your function, you contribute to a shared repository of resources that can streamline workflow development for others.
 
-For detailed instructions on how to contribute your custom function, please refer to the [CONTRIBUTING.md](https://github.com/serverlessworkflow/catalog/blob/main/CONTRIBUTING.md) file.
+For detailed instructions on how to contribute your custom function, please refer to the [CONTRIBUTING.md](https://github.com/open-workflow-specification/catalog/blob/main/CONTRIBUTING.md) file.
 
 ### Events
 

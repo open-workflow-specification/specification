@@ -46,7 +46,7 @@ Conformance testing is the process of verifying that an implementation adheres t
 1. **Clone the Repository**: Start by cloning the Open Workflow CTK repository to your local machine.
    
 ```sh
-git clone https://github.com/serverlessworkflow/specification.git
+git clone https://github.com/open-workflow-specification/specification.git
 ```
 
 2. **Install Dependencies**: Ensure that you have all the necessary dependencies installed. This typically involves setting up a testing framework that can execute Gherkin tests.

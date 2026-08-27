@@ -1472,7 +1472,7 @@ The data carried by the cloud event that notifies that the status phase of a wor
 |:--|:---:|:---:|:---|
 | name | `string` | `yes` | The qualified name of the workflow which's status phase has changed. |
 | updatedAt | `dateTime` | `yes` | The date and time at which the workflow's status phase has changed. |
-| status | `string` | The workflow's current [status phase](https://github.com/serverlessworkflow/specification/blob/main/dsl.md#status-phases). |
+| status | `string` | The workflow's current [status phase](https://github.com/open-workflow-specification/specification/blob/main/dsl.md#status-phases). |
 
 ###### Examples
 
@@ -1662,7 +1662,7 @@ The data carried by the cloud event that notifies that the status phase of a tas
 | workflow | `string` | `yes` | The qualified name of the workflow the task which's status phase has changed belongs to. |
 | task | `uri` | `yes` | A JSON Pointer that references the task which's status phase has changed. |
 | updatedAt | `dateTime` | `yes` | The date and time at which the task's status phase has changed. |
-| status | `string` | The task's current [status phase](https://github.com/serverlessworkflow/specification/blob/main/dsl.md#status-phases). |
+| status | `string` | The task's current [status phase](https://github.com/open-workflow-specification/specification/blob/main/dsl.md#status-phases). |
 
 ###### Examples
 
@@ -1957,9 +1957,9 @@ do:
 
 A **resource catalog** is an external collection of reusable components, such as functions, that can be referenced and imported into workflows. Catalogs allow workflows to integrate with externally defined resources, making it easier to manage reuse and versioning across different workflows.
 
-Each catalog is defined by an `endpoint` property, specifying the root URL where the resources are hosted, enabling workflows to access external functions and services. For portability, catalogs must adhere to a specific file structure, as defined [here](https://github.com/serverlessworkflow/catalog?tab=readme-ov-file#structure).
+Each catalog is defined by an `endpoint` property, specifying the root URL where the resources are hosted, enabling workflows to access external functions and services. For portability, catalogs must adhere to a specific file structure, as defined [here](https://github.com/open-workflow-specification/catalog?tab=readme-ov-file#structure).
 
-For more information about catalogs, refer to the [Open Workflow DSL document](https://github.com/serverlessworkflow/specification/blob/main/dsl.md#catalogs).
+For more information about catalogs, refer to the [Open Workflow DSL document](https://github.com/open-workflow-specification/specification/blob/main/dsl.md#catalogs).
 
 #### Properties
 
@@ -1979,7 +1979,7 @@ use:
   catalogs:
     global:
       endpoint:
-        uri: https://github.com/serverlessworkflow/catalog
+        uri: https://github.com/open-workflow-specification/catalog
         authentication:
           basic:
             username: user
@@ -2766,7 +2766,7 @@ do:
                     event:
                       with:
                         source: https://open-workflow-specification.org/samples
-                        type: io.serverlessworkflow.samples.asyncapi.message.consumed.v1
+                        type: io.open-workflow-specification.samples.asyncapi.message.consumed.v1
                         data:
                           message: '${ $message }'
 ```

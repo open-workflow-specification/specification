@@ -5,7 +5,7 @@ document:
   version: '0.1.0'
 do:
   - log:
-      call: https://raw.githubusercontent.com/serverlessworkflow/catalog/main/functions/log/1.0.0/function.yaml
+      call: https://raw.githubusercontent.com/open-workflow-specification/catalog/main/functions/log/1.0.0/function.yaml
       with:
         message: Hello, world!
         level: information

@@ -1,6 +1,6 @@
-[![contributions Welcome](https://img.shields.io/badge/Contributions-Welcome-green.svg?style=flat)](https://github.com/serverlessworkflow/specification/issues)
-[![license](https://img.shields.io/badge/License-Apache%202.0-blue.svg)](https://github.com/serverlessworkflow/specification/blob/master/LICENSE)
-[<img alt="GitHub Release" src="https://img.shields.io/github/v/release/serverlessworkflow/specification?label=Release">](https://github.com/serverlessworkflow/specification/releases/latest)
+[![contributions Welcome](https://img.shields.io/badge/Contributions-Welcome-green.svg?style=flat)](https://github.com/open-workflow-specification/specification/issues)
+[![license](https://img.shields.io/badge/License-Apache%202.0-blue.svg)](https://github.com/open-workflow-specification/specification/blob/master/LICENSE)
+[<img alt="GitHub Release" src="https://img.shields.io/github/v/release/open-workflow-specification/specification?label=Release">](https://github.com/open-workflow-specification/specification/releases/latest)
 <br>
 [<img src="https://img.shields.io/badge/Website-blue?style=flat&logo=google-chrome&logoColor=white">](https://open-workflow-specification.org/) 
 [<img src="https://img.shields.io/badge/Slack-4A154B?style=flat&logo=slack&logoColor=white">](https://cloud-native.slack.com/messages/open-workflow) 
@@ -73,13 +73,13 @@ These SDKs empower developers to seamlessly integrate workflows into their appli
 
 Explore our SDKs for different programming languages:
 
-- [.NET](https://github.com/serverlessworkflow/sdk-net)
-- [Go](https://github.com/serverlessworkflow/sdk-go)
-- [Java](https://github.com/serverlessworkflow/sdk-java)
-- [PHP](https://github.com/serverlessworkflow/sdk-php)
-- [Python](https://github.com/serverlessworkflow/sdk-python)
-- [Rust](https://github.com/serverlessworkflow/sdk-rust)
-- [TypeScript](https://github.com/serverlessworkflow/sdk-typescript)
+- [.NET](https://github.com/open-workflow-specification/sdk-net)
+- [Go](https://github.com/open-workflow-specification/sdk-go)
+- [Java](https://github.com/open-workflow-specification/sdk-java)
+- [PHP](https://github.com/open-workflow-specification/sdk-php)
+- [Python](https://github.com/open-workflow-specification/sdk-python)
+- [Rust](https://github.com/open-workflow-specification/sdk-rust)
+- [TypeScript](https://github.com/open-workflow-specification/sdk-typescript)
 
 Don't see your favorite implementation on the list? Shout out to the community about it or, even better, contribute to the ecosystem with a new SDK!
 
@@ -90,15 +90,15 @@ No matter your preferred language, our SDKs provide the tools you need to levera
 | Name | About |
 | --- | --- |
 | [Apache KIE SonataFlow](https://sonataflow.org) | Apache KIE SonataFlow is a tool for building cloud-native workflow applications. You can use it to do the services and events orchestration and choreography. |
-| [Java SDK reference implementation](https://github.com/serverlessworkflow/sdk-java/tree/main/impl) | Full compliant Java implementation of the specification |
+| [Java SDK reference implementation](https://github.com/open-workflow-specification/sdk-java/tree/main/impl) | Full compliant Java implementation of the specification |
 | [Lemline](https://github.com/lemline/lemline) | Lemline is a highly scalable runtime running on top of your existing messaging infrastructure. |
-| [Synapse](https://github.com/serverlessworkflow/synapse) | Synapse is a scalable, cross-platform, fully customizable platform for managing and running workflows defined with Open Workflow Specification. |
+| [Synapse](https://github.com/open-workflow-specification/synapse) | Synapse is a scalable, cross-platform, fully customizable platform for managing and running workflows defined with Open Workflow Specification. |
 
 ### Tooling
 
 In order to enhance developer experience with the Open Workflow DSL, we provide a [Visual Studio Code extension](https://marketplace.visualstudio.com/items?itemName=serverlessworkflow.serverless-workflow-vscode-extension).
 
-The sources of the extension can be found [here](https://github.com/serverlessworkflow/vscode-extension).
+The sources of the extension can be found [here](https://github.com/open-workflow-specification/vscode-extension).
 
 ### CNCF Landscape
 

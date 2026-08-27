@@ -6,7 +6,7 @@ document:
 use:
   errors:
     notImplemented:
-      type: https://serverlessworkflow.io/errors/not-implemented
+      type: https://open-workflow-specification.org/errors/not-implemented
       status: 500
       title: Not Implemented
       detail: ${ "The workflow '\( $workflow.definition.document.name ):\( $workflow.definition.document.version )' is a work in progress and cannot be run yet" }
