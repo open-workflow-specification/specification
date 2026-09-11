@@ -1,5 +1,6 @@
 [![contributions Welcome](https://img.shields.io/badge/Contributions-Welcome-green.svg?style=flat)](https://github.com/serverlessworkflow/specification/issues)
 [![license](https://img.shields.io/badge/License-Apache%202.0-blue.svg)](https://github.com/serverlessworkflow/specification/blob/master/LICENSE)
+[![FOSSA Status](https://app.fossa.com/api/projects/git%2Bgithub.com%2Fopen-workflow-specification%2Fspecification.svg?type=shield)](https://app.fossa.com/projects/git%2Bgithub.com%2Fopen-workflow-specification%2Fspecification?ref=badge_shield)
 [<img alt="GitHub Release" src="https://img.shields.io/github/v/release/serverlessworkflow/specification?label=Release">](https://github.com/serverlessworkflow/specification/releases/latest)
 <br>
 [<img src="https://img.shields.io/badge/Website-blue?style=flat&logo=google-chrome&logoColor=white">](https://open-workflow-specification.org/) 
@@ -189,3 +190,7 @@ By becoming a sponsor, you'll not only demonstrate your commitment to advancing 
 Sponsorship opportunities range from financial contributions to in-kind support, and every sponsorship makes a meaningful impact on the project's success and sustainability.
 
 Support our project by [becoming a Sponsor](https://crowdfunding.lfx.linuxfoundation.org/projects/serverless-workflow).
+
+
+## License
+[![FOSSA Status](https://app.fossa.com/api/projects/git%2Bgithub.com%2Fopen-workflow-specification%2Fspecification.svg?type=large)](https://app.fossa.com/projects/git%2Bgithub.com%2Fopen-workflow-specification%2Fspecification?ref=badge_large)
