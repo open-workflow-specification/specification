@@ -1,0 +1,17 @@
+document:
+  dsl: '1.0.3'
+  namespace: test
+  name: for-inline-primitive-array-example
+  version: '0.1.0'
+do:
+  - sumNumbers:
+      for:
+        each: number
+        in:
+          - 1
+          - 2
+          - 3
+      do:
+        - add:
+            set:
+              sum: '${ .sum + $number }'
