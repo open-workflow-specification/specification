@@ -928,6 +928,10 @@ $defs:
                       description: A list of the arguments, if any, of the shell command to run.
                       items:
                         type: string
+                    directory:
+                      type: string
+                      title: ShellDirectory
+                      description: The working directory, if any, in which to run the shell command.
                     environment:
                       type: object
                       title: ShellEnvironment

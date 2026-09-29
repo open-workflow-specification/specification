@@ -907,6 +907,7 @@ do:
       run:
         shell:
           command: 'echo "Hello, ${ .user.name }"'
+          directory: /tmp
 
   - runWorkflow:
       run:
@@ -1027,6 +1028,7 @@ Enables the execution of shell commands within a workflow, enabling workflows to
 | command | `string` | `yes` | The shell command to run |
 | stdin | `string` | `no` | A runtime expression, if any, to the shell command as standard input (stdin).|
 | arguments | `string[]` | `no` | A list of the arguments, if any, of the shell command to run |
+| directory | `string` | `no` | The working directory, if any, in which to run the shell command. |
 | environment | `map` | `no` | A key/value mapping of the environment variables, if any, to use when running the configured process |
 
 ###### Examples
@@ -1054,6 +1056,7 @@ do:
           arguments:
           - Foo
           - Bar
+          directory: /tmp
 ```
 
 ##### Workflow Process
