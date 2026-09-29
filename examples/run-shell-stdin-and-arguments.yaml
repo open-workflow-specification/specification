@@ -18,5 +18,6 @@ do:
             echo "STDIN was: $input"
             echo "ARGS are $1 $2"
           arguments:
-          - Foo
-          - Bar
+          	- Foo
+          	- Bar
+          directory: /tmp
