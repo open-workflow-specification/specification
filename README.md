@@ -91,6 +91,7 @@ No matter your preferred language, our SDKs provide the tools you need to levera
 | --- | --- |
 | [Apache KIE SonataFlow](https://sonataflow.org) | Apache KIE SonataFlow is a tool for building cloud-native workflow applications. You can use it to do the services and events orchestration and choreography. |
 | [Java SDK reference implementation](https://github.com/serverlessworkflow/sdk-java/tree/main/impl) | Full compliant Java implementation of the specification |
+| [Quarkus Flow](https://docs.quarkiverse.io/quarkus-flow/dev/index.html) | Full Java Enterprise implementation of the specification based on the Java SDK |
 | [Lemline](https://github.com/lemline/lemline) | Lemline is a highly scalable runtime running on top of your existing messaging infrastructure. |
 | [Synapse](https://github.com/serverlessworkflow/synapse) | Synapse is a scalable, cross-platform, fully customizable platform for managing and running workflows defined with Open Workflow Specification. |
 
