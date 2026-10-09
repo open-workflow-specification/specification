@@ -1021,6 +1021,12 @@ do:
 
 Enables the execution of shell commands within a workflow, enabling workflows to interact with the underlying operating system and perform system-level operations, such as file manipulation, environment configuration, or system administration tasks.
 
+> [!WARNING]
+> Shell tasks are inherently platform-dependent. Commands, tools, and packages available in one environment may not exist in another (e.g., bash on Windows, Alpine vs. Ubuntu differences). Workflow authors **SHOULD** avoid shell tasks when portability across environments is required, and **SHOULD** prefer [container](#container-process) or [script](#script-process) tasks instead.
+
+> [!NOTE]
+> **Runtime governance:** Runtimes that support shell execution **MUST** document the set of commands and platforms they support. Runtimes **SHOULD** enforce execution constraints such as command whitelisting or sandboxing to prevent arbitrary command execution. Runtimes **MAY** reject shell tasks that reference commands outside their documented supported set.
+
 ###### Properties
 
 | Name | Type | Required | Description |
