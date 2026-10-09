@@ -1,5 +1,5 @@
 document:
-  dsl: '1.0.3'
+  dsl: '1.0.4'
   namespace: examples
   name: run-script-with-arguments
   version: 1.0.0
@@ -12,6 +12,8 @@ do:
         script:
           language: js
           arguments:
-            message: ${ .message }
-          code: >
-            console.log(message)
+            - message
+            - ${ .message }
+          code: |
+            const [_, __, argName, argValue] = process.argv;
+            console.log(argValue)

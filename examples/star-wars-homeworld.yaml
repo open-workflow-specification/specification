@@ -1,6 +1,6 @@
 # yaml-language-server: $schema=../schema/workflow.yaml
 document:
-  dsl: '1.0.3'
+  dsl: '1.0.4'
   namespace: examples
   name: star-wars-homeplanet
   version: '1.0.0'

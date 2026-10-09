@@ -1,4 +1,4 @@
-$id: https://open-workflow-specification.org/schemas/1.0.3/workflow.yaml
+$id: https://open-workflow-specification.org/schemas/1.0.4/workflow.yaml
 $schema: https://json-schema.org/draft/2020-12/schema
 description: Open Workflow DSL - Workflow Schema.
 type: object
@@ -876,11 +876,16 @@ $defs:
                       type: string
                       title: ScriptLanguage
                       description: The language of the script to run.
+                    stdin:
+                      type: string
+                      title: ScriptStdin
+                      description: A runtime expression, if any, to pipe to the script as standard input (stdin).
                     arguments:
-                      type: object
+                      type: array
                       title: ScriptArguments
-                      description: A key/value mapping of the arguments, if any, to use when running the configured script.
-                      additionalProperties: true
+                      description: A list of the arguments, if any, to pass to the script as argv.
+                      items:
+                        type: string
                     environment:
                       type: object
                       title: ScriptEnvironment

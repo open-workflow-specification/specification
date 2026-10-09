@@ -1,5 +1,5 @@
 document:
-  dsl: '1.0.3'
+  dsl: '1.0.4'
   namespace: default
   name: conditional-task
   version: '0.1.0'
