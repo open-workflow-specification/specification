@@ -35,8 +35,8 @@ const LITERAL_URI_PATTERN = new RegExp(literalUriDef.pattern);
 const LITERAL_URI_TEMPLATE_PATTERN = new RegExp(literalUriTemplateDef.pattern);
 
 describe("Schema pattern consistency", () => {
-  test("LiteralUri and LiteralUriTemplate use the same pattern", () => {
-    expect(literalUriDef.pattern).toBe(literalUriTemplateDef.pattern);
+  test("LiteralUri and LiteralUriTemplate use different patterns", () => {
+    expect(literalUriDef.pattern).not.toBe(literalUriTemplateDef.pattern);
   });
 });
 
@@ -105,22 +105,26 @@ describe("LiteralUri pattern (RFC 3986 URI-reference)", () => {
 
 describe("LiteralUriTemplate pattern (RFC 3986 URI-reference)", () => {
   const absoluteTemplates = [
-    "http://example.com",
     "https://example.com/path/{id}",
     "https://server.com/{path}",
     "https://api.example.com/v1/{resource}?limit={limit}",
-    "ftp://files.example.com",
-    "grpc://localhost:50051",
-    "custom-scheme://authority/path",
   ];
 
   const relativeTemplates = [
     "openapi/{version}/petstore.json",
     "{basePath}/resource",
-    "proto/greeter.proto",
     "../{parent}/file.json",
     "/api/{version}/users",
     "docs/{file}.json",
+  ];
+
+  const plainUris = [
+    "http://example.com",
+    "ftp://files.example.com",
+    "grpc://localhost:50051",
+    "custom-scheme://authority/path",
+    "proto/greeter.proto",
+    "openapi/petstore.json",
   ];
 
   test.each(absoluteTemplates)(
@@ -134,6 +138,30 @@ describe("LiteralUriTemplate pattern (RFC 3986 URI-reference)", () => {
     "accepts relative URI template: %s",
     (uri) => {
       expect(LITERAL_URI_TEMPLATE_PATTERN.test(uri)).toBe(true);
+    }
+  );
+
+  test.each(plainUris)(
+    "rejects plain URI with no template variables: %s",
+    (uri) => {
+      expect(LITERAL_URI_TEMPLATE_PATTERN.test(uri)).toBe(false);
+    }
+  );
+});
+
+describe("LiteralUri rejects template variables", () => {
+  const urisWithTemplateVars = [
+    "https://example.com/path/{id}",
+    "https://server.com/{path}",
+    "openapi/{version}/petstore.json",
+    "{basePath}/resource",
+    "/api/{version}/users",
+  ];
+
+  test.each(urisWithTemplateVars)(
+    "rejects URI containing template variables: %s",
+    (uri) => {
+      expect(LITERAL_URI_PATTERN.test(uri)).toBe(false);
     }
   );
 });
