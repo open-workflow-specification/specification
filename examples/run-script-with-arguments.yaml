@@ -12,8 +12,6 @@ do:
         script:
           language: js
           arguments:
-            - message
-            - ${ .message }
+            message : ${.message}
           code: |
-            const [_, __, argName, argValue] = process.argv;
-            console.log(argValue)
+            console.log(message)

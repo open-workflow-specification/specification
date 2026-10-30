@@ -881,11 +881,10 @@ $defs:
                       title: ScriptStdin
                       description: A runtime expression, if any, to pipe to the script as standard input (stdin).
                     arguments:
-                      type: array
+                      type: object
                       title: ScriptArguments
-                      description: A list of the arguments, if any, to pass to the script as argv.
-                      items:
-                        type: string
+                      description: A key/value mapping of the arguments, if any, to use when running the configured script.
+                      additionalProperties: true
                     environment:
                       type: object
                       title: ScriptEnvironment

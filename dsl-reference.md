@@ -983,8 +983,8 @@ Enables the execution of custom scripts or code within a workflow, empowering wo
 | code | `string` | `no` | The script's code.<br>*Required if `source` has not been set.* |
 | source | [externalResource](#external-resource) | `no` | The script's resource.<br>*Required if `code` has not been set.* |
 | stdin | `string` | `no` | A runtime expression, if any, to pipe to the script as standard input (stdin) |
-| arguments | `string[]` | `no` | A list of the arguments, if any, to pass to the script as argv |
-| environment | `map` | `no` | A key/value mapping of the environment variables, if any, to use when running the configured script process |
+| arguments | `map` | `no` | A map with the variables, if any, to use when running the configured script |
+| environment | `map` | `no` | A key/value mapping of the environment variables, if any, to use when running the configured script |
 
 
 > [!WARNING]
@@ -1010,11 +1010,9 @@ do:
         script:
           language: js
           arguments:
-            - Hello
-            - World
+            message: Hello World
           code: |
-            const [_, __, arg1, arg2] = process.argv;
-            console.log(`${arg1} ${arg2}`);
+            console.log(message);
 ```
 
 ##### Shell Process
