@@ -84,6 +84,7 @@ Feature: Call Task
             as:
               pet: ${ .content }
               headers: ${ .headers }
+              hasHeaders: ${ (.headers | length) > 0 }
               statusCode: ${ .statusCode }
     """
     And given the workflow input is:
@@ -92,11 +93,15 @@ Feature: Call Task
     """
     When the workflow is executed
     Then the workflow should complete
-    And the workflow output should have properties 'pet', 'headers', 'headers.Content-Type', 'statusCode'
+    And the workflow output should have properties 'pet', 'headers', 'hasHeaders', 'statusCode'
     And the workflow output should have properties 'pet.id', 'pet.name', 'pet.status'
     And the workflow output should have a 'statusCode' property with value:
     """yaml
     200
+    """
+    And the workflow output should have a 'hasHeaders' property with value:
+    """yaml
+    true
     """
 
   # Tests HTTP call using `basic` authentication
