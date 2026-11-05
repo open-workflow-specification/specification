@@ -1236,7 +1236,7 @@ do:
       catch:
         errors:
           with:
-            type: https://open-workflow-specification.org/dsl/errors/types/communication
+            type: https://open-workflow-specification.org/spec/1.0.0/errors/communication
             status: 503
         as: error
         retry:
