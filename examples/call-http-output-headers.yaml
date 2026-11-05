@@ -1,0 +1,27 @@
+# yaml-language-server: $schema=../schema/workflow.yaml
+document:
+  dsl: '1.0.4'
+  namespace: examples
+  name: http-output-headers
+  version: '1.0.0'
+input:
+  schema:
+    format: json
+    document:
+      type: object
+      required:
+        - petId
+      properties:
+        petId:
+          type: integer
+do:
+  - getPet:
+      call: http
+      with:
+        method: get
+        endpoint: https://petstore.swagger.io/v2/pet/{petId}
+        output: response
+      output:
+        as:
+          pet: .content
+          headers: .headers

@@ -441,6 +441,7 @@ The [HTTP Call](#http-call) enables workflows to interact with external services
 
 ###### Examples
 
+*Basic HTTP GET call:*
 ```yaml
 document:
   dsl: '1.0.4'
@@ -453,6 +454,26 @@ do:
       with:
         method: get
         endpoint: https://petstore.swagger.io/v2/pet/{petId}
+```
+
+*Accessing HTTP response headers and content:*
+```yaml
+document:
+  dsl: '1.0.4'
+  namespace: test
+  name: http-response-example
+  version: '0.1.0'
+do:
+  - getPet:
+      call: http
+      with:
+        method: get
+        endpoint: https://petstore.swagger.io/v2/pet/{petId}
+        output: response
+      output:
+        as:
+          pet: .content
+          headers: .headers
 ```
 
 ##### OpenAPI Call
@@ -2429,6 +2450,9 @@ Describes an HTTP response.
 | statusCode | `integer` | `yes` | The HTTP response status code. |
 | headers | `map[string, string]` | `no` | The HTTP response headers, if any. |
 | content | `any` | `no` | The HTTP response content, if any.<br>*If the request's content type is one of the following, should contain the deserialized response content. Otherwise, should contain the base-64 encoded response content, if any.*|
+
+> [!NOTE]
+> When `output: response` is specified on an [HTTP call](#http-call) or [OpenAPI call](#openapi-call), the task produces this structure as its raw output (`.`). Authors can then access response headers, status code, or content using runtime expressions in `output.as` or `export.as` (for example, `.headers` or `.content`).
 
 #### Examples
 
