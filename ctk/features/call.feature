@@ -62,6 +62,48 @@ Feature: Call Task
     And the workflow output should have properties 'request', 'request.method', 'request.uri', 'request.headers', 'headers', 'statusCode', 'content'
     And the workflow output should have properties 'content.id', 'content.name', 'content.status'
 
+  # Tests HTTP call using `response` output with output filtering
+  # Tests accessing response headers and content via output.as
+  Scenario: Call HTTP With Response Output And Output Filtering
+    Given a workflow with definition:
+    """yaml
+    document:
+      dsl: '1.0.3'
+      namespace: default
+      name: http-call-response-filtering
+      version: '1.0.0'
+    do:
+      - getPet:
+          call: http
+          with:
+            method: get
+            endpoint:
+              uri: https://petstore.swagger.io/v2/pet/{petId}
+            output: response
+          output:
+            as:
+              pet: ${ .content }
+              headers: ${ .headers }
+              hasHeaders: ${ (.headers | length) > 0 }
+              statusCode: ${ .statusCode }
+    """
+    And given the workflow input is:
+    """yaml
+    petId: 1
+    """
+    When the workflow is executed
+    Then the workflow should complete
+    And the workflow output should have properties 'pet', 'headers', 'hasHeaders', 'statusCode'
+    And the workflow output should have properties 'pet.id', 'pet.name', 'pet.status'
+    And the workflow output should have a 'statusCode' property with value:
+    """yaml
+    200
+    """
+    And the workflow output should have a 'hasHeaders' property with value:
+    """yaml
+    true
+    """
+
   # Tests HTTP call using `basic` authentication
   # Tests interpolated path parameters
   Scenario: Call HTTP Using Basic Authentication

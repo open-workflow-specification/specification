@@ -441,6 +441,7 @@ The [HTTP Call](#http-call) enables workflows to interact with external services
 
 ###### Examples
 
+*Basic HTTP GET call:*
 ```yaml
 document:
   dsl: '1.0.4'
@@ -453,6 +454,27 @@ do:
       with:
         method: get
         endpoint: https://petstore.swagger.io/v2/pet/{petId}
+```
+
+*Accessing HTTP response headers and content:*
+```yaml
+document:
+  dsl: '1.0.4'
+  namespace: test
+  name: http-response-example
+  version: '0.1.0'
+do:
+  - getPet:
+      call: http
+      with:
+        method: get
+        endpoint: https://petstore.swagger.io/v2/pet/{petId}
+        output: response
+      output:
+        as:
+          pet: ${ .content }
+          headers: ${ .headers }
+          statusCode: ${ .statusCode }
 ```
 
 ##### OpenAPI Call
@@ -2419,16 +2441,21 @@ Describes an enpoint.
 
 ### HTTP Response
 
-Describes an HTTP response.
+Describes an HTTP response conforming to [RFC 9110 (HTTP Semantics)](https://www.rfc-editor.org/rfc/rfc9110.html).
 
 #### Properties
 
 | Property | Type | Required | Description |
 |----------|:----:|:--------:|-------------|
 | request | [`request`](#http-request) | `yes` | The HTTP request associated with the HTTP response. |
-| statusCode | `integer` | `yes` | The HTTP response status code. |
+| statusCode | `integer` | `yes` | The 3-digit numeric HTTP status code (e.g., `200`, `404`) parsed from the HTTP response status line ([RFC 9112 Section 3.1](https://www.rfc-editor.org/rfc/rfc9112.html#section-3.1)) or the `:status` pseudo-header field ([RFC 9113](https://www.rfc-editor.org/rfc/rfc9113.html)). |
 | headers | `map[string, string]` | `no` | The HTTP response headers, if any. |
 | content | `any` | `no` | The HTTP response content, if any.<br>*If the request's content type is one of the following, should contain the deserialized response content. Otherwise, should contain the base-64 encoded response content, if any.*|
+
+> [!NOTE]
+> In HTTP/1.1 ([RFC 9112](https://www.rfc-editor.org/rfc/rfc9112.html)), the response status line is defined as `HTTP-version status-code [reason-phrase]` (e.g., `HTTP/1.1 200 OK`). In HTTP/2 ([RFC 9113](https://www.rfc-editor.org/rfc/rfc9113.html)) and HTTP/3 ([RFC 9114](https://www.rfc-editor.org/rfc/rfc9114.html)), status codes are carried in the `:status` pseudo-header and reason phrases are omitted. Runtimes map the status code to `statusCode` as an integer.
+>
+> When `output: response` is specified on an [HTTP call](#http-call) or [OpenAPI call](#openapi-call), the task produces this structure as its raw output (`.`). Authors can then access response headers, status code, or content using runtime expressions in `output.as` or `export.as` (for example, `${ .headers }`, `${ .statusCode }`, or `${ .content }`).
 
 #### Examples
 
