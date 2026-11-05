@@ -84,6 +84,7 @@ Feature: Call Task
             as:
               pet: ${ .content }
               headers: ${ .headers }
+              status: ${ .statusCode }
     """
     And given the workflow input is:
     """yaml
@@ -91,8 +92,12 @@ Feature: Call Task
     """
     When the workflow is executed
     Then the workflow should complete
-    And the workflow output should have properties 'pet', 'headers', 'headers.Content-Type'
+    And the workflow output should have properties 'pet', 'headers', 'headers.Content-Type', 'status'
     And the workflow output should have properties 'pet.id', 'pet.name', 'pet.status'
+    And the workflow output should have a 'status' property with value:
+    """yaml
+    200
+    """
 
   # Tests HTTP call using `basic` authentication
   # Tests interpolated path parameters
