@@ -472,8 +472,8 @@ do:
         output: response
       output:
         as:
-          pet: .content
-          headers: .headers
+          pet: ${ .content }
+          headers: ${ .headers }
 ```
 
 ##### OpenAPI Call
