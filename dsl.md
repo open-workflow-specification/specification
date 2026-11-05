@@ -385,6 +385,20 @@ CloudFlows defines [several arguments](#runtime-expression-arguments) that runti
 
 When the evaluation of an expression fails, runtimes **must** raise an error with type `https://open-workflow-specification.org/spec/1.0.0/errors/expression` and status `400`.
 
+Since the default runtime expression language is [`jq`](https://jqlang.github.io/jq/), and `jq` filters are generators that may emit zero, one, or many values, runtimes **must** map a filter's output stream to a single runtime-expression value as follows:
+
+| jq output | Runtime-expression result |
+|:----------|:--------------------------|
+| A single value | The emitted value, returned as-is (including JSON `null`). |
+| Multiple values | An array of every emitted value, in emission order. |
+| No value (e.g. `empty`) | JSON `null`. |
+| A value followed by an error | The expression error described above. |
+
+Runtimes **must not** alter, wrap, or truncate the author's expression to control its cardinality; in particular they **must not** implicitly apply `first(...)` or otherwise stop evaluation after the first emitted value. The complete output stream is always evaluated, so an error raised at any point during evaluation&mdash;even after one or more values have already been emitted&mdash;**must** fail the expression. Authors who need a single value from a multi-output filter **must** express that intent explicitly, using `jq` constructs such as `first(.[])`, `.[0]`, or `limit(1; .[])`.
+
+> [!NOTE]
+> Because a filter that emits no value yields JSON `null`, the result of `empty` is indistinguishable from an explicitly emitted `null`.
+
 > [!WARNING]
 > Runtimes **must** evaluate only runtime expressions that are defined in workflow definitions, and **must not** parse or evaluate expression syntax embedded in workflow input or task input data (for example, `jq`, regular expressions, or similar). Treating input data as executable expressions exposes the system to injection attacks, potentially allowing unauthorized access to system data and resources.
 
