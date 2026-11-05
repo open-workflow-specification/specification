@@ -474,7 +474,7 @@ do:
         as:
           pet: ${ .content }
           headers: ${ .headers }
-          status: ${ .statusCode }
+          statusCode: ${ .statusCode }
 ```
 
 ##### OpenAPI Call
