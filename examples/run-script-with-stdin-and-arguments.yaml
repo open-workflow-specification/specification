@@ -14,9 +14,8 @@ do:
           arguments:
             arg: hello
           code: |
-            import { readFileSync } from 'node:fs';
-            const stdin = readFileSync(process.stdin.fd, 'utf8');
-            console.log('stdin > ', stdin) // Output: stdin > Hello Workflow
+            
+            console.log('stdin > ', readLine()) // Output: stdin > Hello Workflow
             console.log('arg > ', arg) // Output: arg > hello
             const foo = process.env.foo;
             console.log('env > ', foo) // Output: env > bar
