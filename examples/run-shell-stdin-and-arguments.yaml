@@ -1,5 +1,5 @@
 document:
-  dsl: 1.0.3
+  dsl: '1.1.0'
   namespace: examples
   name: run-shell-with-stdin-and-arguments
   version: 1.0.0

@@ -54,7 +54,7 @@ The following diagram represents the high-level flow of the workflow:
 
 ```yaml
 document:
-  dsl: '1.0.3'
+  dsl: '1.1.0'
   namespace: default
   name: sql-export-to-minio
   version: 0.1.2
