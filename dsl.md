@@ -586,7 +586,7 @@ This format ensures that the function, its version, and the catalog it belongs t
 *Calling a custom function defined within a catalog:*
 ```yaml
 document:
-  dsl: '1.0.3'
+  dsl: '1.1.0'
   namespace: test
   name: catalog-example
   version: '0.1.0'
@@ -688,7 +688,7 @@ The following example demonstrates how to use the `validateEmailAddress` custom 
 ```yaml
 # workflow.yaml
 document:
-  dsl: '1.0.3'
+  dsl: '1.1.0'
   namespace: default
   name: customFunctionWorkflow
   version: '0.1.0'
@@ -756,7 +756,7 @@ See the [DSL reference](dsl-reference.md#extension) for more details about exten
 *Sample logging extension:*
 ```yaml
 document:
-  dsl: '1.0.3'
+  dsl: '1.1.0'
   namespace: test
   name: sample-workflow
   version: '0.1.0'

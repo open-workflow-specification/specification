@@ -11,7 +11,7 @@ Feature: Call Task
     Given a workflow with definition:
     """yaml
     document:
-      dsl: '1.0.3'
+      dsl: '1.1.0'
       namespace: default
       name: http-call-with-content-output
       version: '1.0.0'
@@ -40,7 +40,7 @@ Feature: Call Task
     Given a workflow with definition:
     """yaml
     document:
-      dsl: '1.0.3'
+      dsl: '1.1.0'
       namespace: default
       name: http-call-with-response-output
       version: '1.0.0'
@@ -68,7 +68,7 @@ Feature: Call Task
     Given a workflow with definition:
     """yaml
     document:
-      dsl: '1.0.3'
+      dsl: '1.1.0'
       namespace: default
       name: http-call-response-filtering
       version: '1.0.0'
@@ -110,7 +110,7 @@ Feature: Call Task
     Given a workflow with definition:
     """yaml
     document:
-      dsl: '1.0.3'
+      dsl: '1.1.0'
       namespace: default
       name: http-call-with-basic-auth
       version: '1.0.0'
@@ -140,7 +140,7 @@ Feature: Call Task
     Given a workflow with definition:
     """yaml
     document:
-      dsl: '1.0.3'
+      dsl: '1.1.0'
       namespace: default
       name: openapi-call-with-content-output
       version: '1.0.0'
@@ -169,7 +169,7 @@ Feature: Call Task
     Given a workflow with definition:
     """yaml
     document:
-      dsl: '1.0.3'
+      dsl: '1.1.0'
       namespace: default
       name: openapi-call-with-response-output
       version: '1.0.0'

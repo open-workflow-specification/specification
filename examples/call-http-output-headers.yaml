@@ -1,6 +1,6 @@
 # yaml-language-server: $schema=../schema/workflow.yaml
 document:
-  dsl: '1.0.4'
+  dsl: '1.1.0'
   namespace: examples
   name: http-output-headers
   version: '1.0.0'

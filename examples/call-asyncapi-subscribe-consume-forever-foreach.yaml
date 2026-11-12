@@ -1,5 +1,5 @@
 document:
-  dsl: '1.0.4'
+  dsl: '1.1.0'
   namespace: examples
   name: bearer-auth
   version: '0.1.0'
@@ -22,7 +22,7 @@ do:
                     event:
                       with:
                         source: https://open-workflow-specification.org/samples
-                        type: io.serverlessworkflow.samples.asyncapi.message.consumed.v1
+                        type: org.open-workflow-specification.samples.asyncapi.message.consumed.v1
                         data:
                           message: '${ $message }'
                         

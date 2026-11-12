@@ -1,5 +1,5 @@
 /*
- * Copyright 2023-Present The Serverless Workflow Specification Authors
+ * Copyright 2023-Present The Open Workflow Specification Authors
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -24,7 +24,7 @@ export module SWSchemaValidator {
   const ajv = new Ajv({ strict: false, allowUnionTypes: true });
   addFormats(ajv);
 
-  const workflowSchemaId = "https://open-workflow-specification.org/schemas/1.0.4/workflow.yaml";
+  const workflowSchemaId = "https://open-workflow-specification.org/schemas/1.1.0/workflow.yaml";
   const schemaPath = "../../../schema";
   export const defaultEncoding = "utf-8";
 

@@ -1,5 +1,5 @@
 document:
-  dsl: '1.0.4'
+  dsl: '1.1.0'
   namespace: test
   name: set
   version: '0.1.0'
@@ -7,7 +7,7 @@ schedule:
   on:
     one:
       with:
-        type: io.serverlessworkflow.samples.events.trigger.v1
+        type: org.open-workflow-specification.samples.events.trigger.v1
 do:
   - initialize:
       set: ${ $workflow.input[0] }
