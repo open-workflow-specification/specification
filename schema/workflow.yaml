@@ -1053,6 +1053,7 @@ $defs:
               type: string
               title: CatchAs
               description: The name of the runtime expression variable to save the error as. Defaults to 'error'.
+              default: error
             when:
               type: string
               title: CatchWhen
