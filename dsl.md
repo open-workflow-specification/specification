@@ -409,7 +409,7 @@ Runtimes **must not** alter, wrap, or truncate the author's expression to contro
 | context | `map` | The workflow's context data. |
 | input | `any` | The task's transformed input. |
 | output | `any` | The task's transformed output. |
-| secrets | `map` | A key/value map of the workflow secrets.<br>To avoid unintentional bleeding, secrets can only be used in the `input.from` runtime expression. |
+| secrets | `map` | A key/value map of the workflow secrets. |
 | authorization | [`authorizationDescriptor`](#authorization-descriptor) | Describes the resolved authorization, as defined by the task's authentication, if any. |
 | task | [`taskDescriptor`](#task-descriptor) | Describes the current task. |
 | workflow | [`workflowDescriptor`](#workflow-descriptor) | Describes the current workflow. |
